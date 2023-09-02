@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Медицинские центры{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'contacts/css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2>Медицинские центры</h2>
+    <hr/>
+    <div class="row">
+        {% for center in centers %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body mb-1">
+                        <h5 class="card-title mb-3">{{ center.address }}</h5>
+
+                        <h6 class="card-subtitle mb-3 text-muted">
+                            <a href="https://www.google.com/maps/search/?api=1&query={{ center.address }}"
+                               target="_blank" style="text-decoration: none; color: inherit;">Показать на карте</a>
+                        </h6>
+
+                        {% if center.phone_numbers.all %}
+                            <h6 class="card-subtitle mb-1 text-muted">Телефон:</h6>
+                            <ul>
+                                {% for phone in center.phone_numbers.all %}
+                                    <li>{{ phone.number }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        {% if center.emails.all %}
+                            <h6 class="card-subtitle mb-1 text-muted">Почта:</h6>
+                            <ul>
+                                {% for email in center.emails.all %}
+                                    <li>{{ email.email }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        {% if center.working_hours.all %}
+                             <h6 class="card-subtitle mb-1 text-muted">График работы:</h6>
+                            <table>
+                                {% for working_hour in center.working_hours.all %}
+                                <tr>
+                                    <td>{{ working_hour.get_day_display }}</td>
+                                    <td>{{ working_hour.hours }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

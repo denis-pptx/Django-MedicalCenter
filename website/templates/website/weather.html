@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Время{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-4">
+        <h1>Погода</h1>
+        <hr/>
+        {% if error_message %}
+            <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Город</span>
+                <input type="text" class="form-control" name="city" value="{{ city }}">
+                <button class="btn btn-outline-secondary" type="submit">Получить</button>
+            </div>
+        </form>
+
+        {% if city and weather %}
+            <p>{{ city }}: {{ weather.description }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

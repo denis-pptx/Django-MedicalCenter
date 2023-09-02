@@ -1,0 +1,55 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'doctors/css/styles.css' %}">
+
+<div class="row">
+    {% for profile in profiles %}
+    <div class="col-md-3 mb-4">
+        <div class="card h-100">
+            <div class="card-img-top-container">
+                {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" alt="Profile Photo" class="card-img-top">
+                {% else %}
+                <img src="https://via.placeholder.com/500x500?text=No+Image" alt="No Image">
+                {% endif %}
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">{{ profile.user.get_full_name }}</h5>
+                <hr/>
+                {% if profile.specializations.all %}
+                <h5 class="card-subtitle mb-3 text-muted" style="line-height: 1.3;">
+                    {{ profile.specializations.all|join:", " }}</h5>
+                {% endif %}
+
+                {% if profile.experience %}
+                <div class="d-flex align-items-center align-items-baseline">
+                    <h6 class="card-subtitle text-muted me-2">Опыт работы:</h6>
+                    <span class="card-text">from {{ profile.experience }}</span>
+                </div>
+                {% endif %}
+
+                {% if profile.category %}
+                <div class="d-flex align-items-center align-items-baseline">
+                    <h6 class="card-subtitle text-muted me-2">Категория:</h6>
+                    <span class="card-text">{{ profile.category.name }}</span>
+                </div>
+                {% endif %}
+
+                {% if profile.academic_degree %}
+                <div class="d-flex align-items-center align-items-baseline">
+                    <h6 class="card-subtitle text-muted me-2">Научная степень:</h6>
+                    <span class="card-text">{{ profile.academic_degree.name }}</span>
+                </div>
+                {% endif %}
+
+                {% if profile.types.all %}
+                <div class="d-flex align-items-center align-items-baseline">
+                    <h6 class="card-subtitle text-muted me-2">Тип:</h6>
+                    <span class="card-text">{{ profile.types.all|join:", " }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

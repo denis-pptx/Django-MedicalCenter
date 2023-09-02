@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load doctors_tag %}s
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'services/css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-3">{{ category.name }}</h1>
+    {% if category.image %}
+        <div class="image-container">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-image">
+        </div>
+    {% endif %}
+    <p class="mt-2">{{ category.description }}</p>
+
+    {% for subcategory in subcategories %}
+        <h2>
+            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-{{ subcategory.id }}" aria-expanded="false">
+                {{ subcategory.name }}
+            </button>
+        </h2>
+        <div class="collapse mb-2 col-6" id="collapse-{{ subcategory.id }}">
+            <div class="card card-body">
+                {% if subcategory.service_set.all %}
+                    <table class="table">
+                        <tbody>
+                            {% for service in subcategory.service_set.all %}
+                                <tr>
+                                    <td>{{ service.name }}</td>
+                                    <td>${{ service.price }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <span>Нет услуг в данной категории</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <hr />
+    {% get_doctors service_category_slug=category.slug %}
+{% endblock %}
