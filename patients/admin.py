@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from services.models import Service
-from .models import Patient, Order
+from .models import Order, PatientProfile
 from django import forms
 
 
@@ -33,7 +33,7 @@ class OrderInline(admin.TabularInline):
     readonly_fields = ('created_at', 'updated_at')
 
 
-@admin.register(Patient)
+@admin.register(PatientProfile)
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'date_of_birth', 'get_order_count')
     inlines = [OrderInline]

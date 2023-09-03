@@ -2,27 +2,23 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
 from services.models import Service
+from django.contrib.auth.models import User
 
 
-class Patient(models.Model):
-    last_name = models.CharField(max_length=100)
-    first_name = models.CharField(max_length=100)
-    patronymic = models.CharField(max_length=100)
+class PatientProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(
         validators=[MinValueValidator(date(1900, 1, 1)), MaxValueValidator(date.today())]
     )
     phone_number = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.last_name} {self.first_name}"
-
-    class Meta:
-        unique_together = ['last_name', 'first_name', 'patronymic', 'date_of_birth']
-
+        return f"{self.user.last_name} {self.user.first_name}"
 
 
 class Order(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(PatientProfile, on_delete=models.CASCADE)
     services = models.ManyToManyField(Service)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
