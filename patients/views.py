@@ -35,6 +35,11 @@ def register(request):
             new_profile = profile_form.save(commit=False)
             new_profile.user = new_user
             new_profile.save()
+
+            new_user.first_name = profile_form.cleaned_data['first_name']
+            new_user.last_name = profile_form.cleaned_data['last_name']
+            new_user.save()
+
             return render(request, 'patients/register_done.html', {'new_user': new_user})
     else:
         user_form = UserCreationForm()
