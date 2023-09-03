@@ -26,6 +26,7 @@ urlpatterns = [
     path('services/', include('services.urls')),
     path('contacts/', include('contacts.urls')),
     path('doctors/', include('doctors.urls')),
+    path('patients/', include('patients.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('account.urls')),
     path('markdownx/', include('markdownx.urls')),

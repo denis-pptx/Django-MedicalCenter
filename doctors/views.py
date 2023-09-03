@@ -16,7 +16,7 @@ def profile(request):
             user.last_name = form.cleaned_data['last_name']
             user.save()
             form.save()
-            return redirect('profile')
+            return redirect('doctor_profile')
     else:
         form = ProfileForm(instance=user_profile,
                            initial={'first_name': user.first_name,
