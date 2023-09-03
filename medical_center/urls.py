@@ -27,6 +27,7 @@ urlpatterns = [
     path('contacts/', include('contacts.urls')),
     path('doctors/', include('doctors.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('account.urls')),
     path('markdownx/', include('markdownx.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
