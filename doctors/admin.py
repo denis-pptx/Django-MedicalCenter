@@ -3,7 +3,7 @@ from django.core.files.storage import default_storage
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-from .models import Specialization, Category, AcademicDegree, Type, DoctorProfile
+from .models import Specialization, Category, AcademicDegree, Type, DoctorProfile, DoctorSchedule
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from datetime import date, timedelta
@@ -11,6 +11,12 @@ from datetime import date, timedelta
 admin.site.register(Category)
 admin.site.register(AcademicDegree)
 admin.site.register(Type)
+
+
+@admin.register(DoctorSchedule)
+class DoctorScheduleAdmin(admin.ModelAdmin):
+    list_display = ('doctor', 'day_of_week', 'start_time', 'end_time')
+    list_filter = ('doctor', 'day_of_week')
 
 
 @admin.register(Specialization)

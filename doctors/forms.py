@@ -1,5 +1,7 @@
 from django import forms
-from .models import DoctorProfile
+from django.core.exceptions import ValidationError
+
+from .models import DoctorProfile, DoctorSchedule
 
 
 class ProfileForm(forms.ModelForm):
@@ -11,3 +13,14 @@ class ProfileForm(forms.ModelForm):
         model = DoctorProfile
         fields = ['first_name', 'last_name', 'specializations', 'experience',
                   'category', 'academic_degree', 'types', 'photo']
+
+
+class DoctorScheduleForm(forms.ModelForm):
+    class Meta:
+        model = DoctorSchedule
+        fields = ['day_of_week', 'start_time', 'end_time']
+        widgets = {
+            'start_time': forms.TimeInput(attrs={'type': 'time'}),
+            'end_time': forms.TimeInput(attrs={'type': 'time'}),
+        }
+

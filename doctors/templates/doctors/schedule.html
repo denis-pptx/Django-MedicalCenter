@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title%}Расписание врача{% endblock %}
+
+{% block content %}
+    <h1>Расписание: {{ doctor.get_full_name }}</h1>
+    <hr>
+    <table>
+        {% if doctor_schedule %}
+        <thead>
+            <tr>
+                <th>День недели</th>
+                <th>Время работы</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in doctor_schedule %}
+            <tr>
+                <td>{{ schedule.get_day_of_week_display }}</td>
+                <td>{{ schedule.start_time|date:"H:i" }} - {{ schedule.end_time|date:"H:i" }}</td>
+                <td>
+                    <a href="{% url 'update_schedule' schedule.id %}">Изменить</a> |
+                    <a href="{% url 'delete_schedule' schedule.id %}">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+            <h3>Пусто</h3>
+        {% endif %}
+    </table>
+    <a href="{% url 'create_schedule' %}">Добавить расписание на день</a>
+{% endblock %}
