@@ -32,7 +32,7 @@ class ExperienceFilter(admin.SimpleListFilter):
             years = int(self.value())
             current_date = date.today()
             min_experience_date = current_date - timedelta(days=365 * years)
-            return queryset.filter(experience__gte=min_experience_date)
+            return queryset.filter(experience__lte=min_experience_date)
         return queryset
 
 
