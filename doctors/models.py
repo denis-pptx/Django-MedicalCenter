@@ -37,7 +37,7 @@ class Type(models.Model):
         return self.name
 
 
-class Profile(models.Model):
+class DoctorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     specializations = models.ManyToManyField(Specialization)
     experience = models.DateField(null=True, blank=True)

@@ -3,7 +3,7 @@ from django.core.files.storage import default_storage
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-from .models import Specialization, Category, AcademicDegree, Type, Profile
+from .models import Specialization, Category, AcademicDegree, Type, DoctorProfile
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from datetime import date, timedelta
@@ -36,7 +36,7 @@ class ExperienceFilter(admin.SimpleListFilter):
         return queryset
 
 
-@admin.register(Profile)
+@admin.register(DoctorProfile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'get_specializations_display',
                     'experience', 'category', 'academic_degree', 'get_types_display')
@@ -56,7 +56,7 @@ class ProfileAdmin(admin.ModelAdmin):
     get_specializations_display.short_description = _('Specialization')
 
 
-@receiver(pre_delete, sender=Profile)
+@receiver(pre_delete, sender=DoctorProfile)
 def delete_doctor_photo(sender, instance, **kwargs):
     if instance.photo:
         default_storage.delete(instance.photo.path)

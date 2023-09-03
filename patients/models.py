@@ -1,8 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
-from services.models import Service
 from django.contrib.auth.models import User
+from services.models import Service
 
 
 class PatientProfile(models.Model):

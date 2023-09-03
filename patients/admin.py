@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from services.models import Service
-from .models import Order, PatientProfile
+from .models import PatientProfile, Order
 from django import forms
 
 

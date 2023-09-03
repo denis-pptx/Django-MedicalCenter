@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ProfileForm
-from .models import Profile
+from .models import DoctorProfile
 
 
 @permission_required('doctors.can_edit_profile')
 def profile(request):
     user = request.user
-    user_profile = get_object_or_404(Profile, user=user)
+    user_profile = get_object_or_404(DoctorProfile, user=user)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=user_profile)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import DoctorProfile
 
 
 class ProfileForm(forms.ModelForm):
@@ -8,6 +8,6 @@ class ProfileForm(forms.ModelForm):
     experience = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
-        model = Profile
+        model = DoctorProfile
         fields = ['first_name', 'last_name', 'specializations', 'experience',
                   'category', 'academic_degree', 'types', 'photo']
