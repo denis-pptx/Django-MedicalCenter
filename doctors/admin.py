@@ -42,12 +42,17 @@ class ExperienceFilter(admin.SimpleListFilter):
         return queryset
 
 
+class DoctorScheduleInline(admin.TabularInline):
+    model = DoctorSchedule
+    extra = 0
+
+
 @admin.register(DoctorProfile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'get_specializations_display',
                     'experience', 'category', 'academic_degree', 'get_types_display')
-
     list_filter = ('specializations', ExperienceFilter, 'category', 'academic_degree', 'types')
+    inlines = [DoctorScheduleInline]
 
     def get_types_display(self, obj):
         return mark_safe(',<br>'.join(str(type)
