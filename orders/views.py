@@ -65,13 +65,19 @@ def create_order(request):
     if request.method == 'POST':
         service_id = request.POST.get('service_id')
         doctor_id = request.POST.get('doctor_id')
-        schedule_id = request.POST.get('schedule_id')
+
+        appointment_info = request.POST.get('appointment_info')
+        appointment_date, schedule_id = appointment_info.split(',')
+
+        schedule = DoctorSchedule.objects.get(id=schedule_id)
 
         Order.objects.create(
             patient=request.user.patientprofile,
             service=Service.objects.get(id=service_id),
             doctor=DoctorProfile.objects.get(id=doctor_id),
-            appointment_date=request.POST.get('appointment_date'),
+            appointment_date=appointment_date,
+            start_time=schedule.start_time,
+            end_time=schedule.end_time
         )
 
         return redirect(reverse('order_success'))

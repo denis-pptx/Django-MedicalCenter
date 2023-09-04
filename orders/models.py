@@ -9,4 +9,6 @@ class Order(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
     appointment_date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
 
