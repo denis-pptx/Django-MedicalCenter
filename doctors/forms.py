@@ -1,5 +1,6 @@
 from django import forms
-from datetime import datetime, timedelta
+from datetime import timedelta
+from django.utils import timezone
 from .models import DoctorProfile, DoctorSchedule
 
 
@@ -20,8 +21,8 @@ class DoctorScheduleForm(forms.ModelForm):
         fields = ['date', 'start_time', 'end_time']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date',
-                                           'min': (datetime.now()).date(),
-                                           'max': (datetime.now() + timedelta(days=30)).date()}),
+                                           'min': (timezone.now()).date(),
+                                           'max': (timezone.now().date() + timedelta(days=30))}),
             'start_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
         }

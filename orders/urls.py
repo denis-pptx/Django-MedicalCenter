@@ -6,6 +6,5 @@ from .views import *
 urlpatterns = [
     path('select_doctor/<int:service_id>/', select_doctor, name='select_doctor'),
     path('select_doctor_date/', select_doctor_date, name='select_doctor_date'),
-    path('create_order/', create_order, name='create_order'),
-    path('order_success/', TemplateView.as_view(template_name="orders/order_success.html"), name='order_success')
+    path('create_order/', create_order, name='create_order')
 ]

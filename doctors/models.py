@@ -1,4 +1,4 @@
-from datetime import timezone, datetime
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -56,7 +56,7 @@ class DoctorProfile(models.Model):
         if self.experience and self.experience.year < 1950:
             raise ValidationError({'experience': "The beginning of the work experience should not be less than 1950."})
 
-        if self.experience and self.experience > datetime.now(timezone.utc).date():
+        if self.experience and self.experience > datetime.now().date():
             raise ValidationError({'experience': "Experience date should not be in the future."})
 
 
@@ -81,8 +81,8 @@ class DoctorSchedule(models.Model):
         if self.date < datetime.now().date():
             raise ValidationError({'date': "Вы не можете добавить расписание в прошлом."})
 
-        max_allowed_date = datetime.now() + timedelta(days=30)
-        if self.date > max_allowed_date.date():
+        max_allowed_date = datetime.now().date() + timedelta(days=30)
+        if self.date > max_allowed_date:
             raise ValidationError({'date': "Вы не можете добавить расписание более чем на 30 дней вперед."})
 
         existing_schedule = DoctorSchedule.objects.filter(
