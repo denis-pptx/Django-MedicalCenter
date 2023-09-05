@@ -1,7 +1,12 @@
 from django.contrib.auth.decorators import permission_required
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from datetime import date
 
+from django.views.decorators.http import require_POST
+
+from orders.models import Order
 from .forms import ProfileForm, DoctorScheduleForm
 from .models import DoctorProfile, DoctorSchedule
 
@@ -86,3 +91,28 @@ def delete_schedule(request, pk):
         return redirect('doctor_schedule')
 
     return render(request, 'doctors/delete_schedule.html', {'schedule': schedule})
+
+
+def order_list(request):
+    doctor = request.user.doctorprofile
+    orders = Order.objects.filter((Q(status='pending') | Q(status='completed')) &
+                                  Q(doctor_schedule__doctor=doctor)
+                                  ).order_by('doctor_schedule__date')
+
+    context = {
+        'doctor': doctor,
+        'orders': orders,
+    }
+    return render(request, 'doctors/order_list.html', context=context)
+
+
+@require_POST
+def complete_order(request, order_id):
+    doctor = request.user.doctorprofile
+    order = get_object_or_404(Order, id=order_id, doctor_schedule__doctor=doctor)
+
+    if order.status == 'pending':
+        order.status = 'completed'
+        order.save()
+
+    return redirect('doctor_order_list')

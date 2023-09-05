@@ -12,7 +12,7 @@ class Order(models.Model):
     status = models.CharField(
         max_length=50,
         choices=[
-            ('pending', 'Ожидает выплнения'),
+            ('pending', 'Ожидает выполнения'),
             ('completed', 'Выполнен'),
             ('cancelled', 'Отменен'),
         ],
