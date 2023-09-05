@@ -1,9 +1,14 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
+
+from orders.models import Order
 from .forms import ProfileForm
 from django.shortcuts import redirect
 from .models import PatientProfile
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
+from datetime import date
 
 
 def profile(request):
@@ -47,3 +52,26 @@ def register(request):
 
     return render(request, 'patients/register.html', {'user_form': user_form,
                                                       'profile_form': profile_form})
+
+
+def order_list(request):
+    orders = Order.objects.filter(Q(patient__user=request.user) &
+                                  (Q(status='pending') | Q(status='completed'))
+                                  ).order_by('doctor_schedule__date')
+
+    context = {
+        'orders': orders,
+        'today': date.today()
+    }
+    return render(request, 'patients/order_list.html', context=context)
+
+
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+
+    if order.doctor_schedule.date >= date.today() \
+            and order.status == 'pending':
+        order.status = 'cancelled'
+        order.save()
+
+    return redirect(reverse('patient_order_list'))

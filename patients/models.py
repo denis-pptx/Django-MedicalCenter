@@ -17,11 +17,3 @@ class PatientProfile(models.Model):
         return f"{self.user.last_name} {self.user.first_name}"
 
 
-# class Order(models.Model):
-#     patient = models.ForeignKey(PatientProfile, on_delete=models.CASCADE)
-#     services = models.ManyToManyField(Service)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return f"Order #{self.pk}"
