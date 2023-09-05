@@ -15,8 +15,8 @@ admin.site.register(Type)
 
 @admin.register(DoctorSchedule)
 class DoctorScheduleAdmin(admin.ModelAdmin):
-    list_display = ('doctor', 'day_of_week', 'start_time', 'end_time')
-    list_filter = ('doctor', 'day_of_week')
+    list_display = ('doctor', 'date', 'start_time', 'end_time')
+    list_filter = ('doctor',)
 
 
 @admin.register(Specialization)

@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Удаление расписания</h1>
     <hr>
-    <p>Вы уверены, что хотите удалить расписание для дня: {{ schedule.get_day_of_week_display }}?</p>
+    <p>Вы уверены, что хотите удалить расписание для дня: {{ schedule.date }} ({{ schedule.date|date:"l" }})?</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Удалить</button>

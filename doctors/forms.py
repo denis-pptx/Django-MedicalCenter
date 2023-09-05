@@ -1,6 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError
-
+from datetime import datetime, timedelta
 from .models import DoctorProfile, DoctorSchedule
 
 
@@ -18,8 +17,11 @@ class ProfileForm(forms.ModelForm):
 class DoctorScheduleForm(forms.ModelForm):
     class Meta:
         model = DoctorSchedule
-        fields = ['day_of_week', 'start_time', 'end_time']
+        fields = ['date', 'start_time', 'end_time']
         widgets = {
+            'date': forms.DateInput(attrs={'type': 'date',
+                                           'min': (datetime.now()).date(),
+                                           'max': (datetime.now() + timedelta(days=30)).date()}),
             'start_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
         }

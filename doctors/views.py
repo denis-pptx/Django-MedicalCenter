@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+
 from .forms import ProfileForm, DoctorScheduleForm
 from .models import DoctorProfile, DoctorSchedule
 
@@ -31,23 +33,11 @@ def doctors(request):
 
 @permission_required('doctors.view_doctorschedule')
 def doctor_schedule(request):
-    schedule = DoctorSchedule.objects.filter(doctor=request.user.doctorprofile)
+    doctor = request.user.doctorprofile
+    schedule = DoctorSchedule.objects.filter(doctor=doctor).order_by('date')
 
-    def custom_sort(schedule_item):
-        days_order = {
-            'Mon': 1,
-            'Tue': 2,
-            'Wed': 3,
-            'Thu': 4,
-            'Fri': 5,
-            'Sat': 6,
-            'Sun': 7,
-        }
-        return days_order[schedule_item.day_of_week]
-
-    sorted_schedule = sorted(schedule, key=custom_sort)
-    return render(request, 'doctors/schedule.html', {'doctor_schedule': sorted_schedule,
-                                                     'doctor': request.user})
+    return render(request, 'doctors/schedule.html', {'doctor_schedule': schedule,
+                                                     'doctor': doctor})
 
 
 @permission_required('doctors.add_doctorschedule')
@@ -59,7 +49,7 @@ def create_schedule(request):
             schedule = form.save(commit=False)
             schedule.doctor = request.user.doctorprofile
             schedule.save()
-            return redirect('doctor_schedule')
+            return redirect(reverse('doctor_schedule'))
     else:
         form = DoctorScheduleForm()
 
@@ -71,7 +61,7 @@ def update_schedule(request, pk):
     schedule = DoctorSchedule.objects.get(pk=pk)
 
     if request.user.doctorprofile != schedule.doctor:
-        return redirect('schedule_list')
+        return redirect(reverse('doctor_schedule'))
 
     if request.method == 'POST':
         form = DoctorScheduleForm(request.POST, instance=schedule)
@@ -89,7 +79,7 @@ def delete_schedule(request, pk):
     schedule = get_object_or_404(DoctorSchedule, pk=pk)
 
     if request.user.doctorprofile != schedule.doctor:
-        return redirect('schedule_list')
+        return redirect('doctor_schedule')
 
     if request.method == 'POST':
         schedule.delete()
