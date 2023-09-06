@@ -4,7 +4,28 @@
 
 {% block content %}
     <h1>Записи врача: {{ doctor.user.get_full_name }}</h1>
+    <form method="GET" action="{% url 'doctor_order_list' %}">
+        <label for="status">Статус:</label>
+        <select name="status" id="status">
+            <option value="all" {% if status == 'all' %}selected{% endif %}>Все</option>
+            <option value="completed" {% if status == 'completed' %}selected{% endif %}>Выполненные</option>
+            <option value="pending" {% if status == 'pending' %}selected{% endif %}>Не выполненные</option>
+        </select>
+
+
+        <label for="days">Дни:</label>
+        <select name="days" id="days">
+            <option value="all" {% if days == 'all' %}selected{% endif %}>Все</option>
+            <option value="past" {% if days == 'past' %}selected{% endif %}>Прошедшие</option>
+            <option value="today" {% if days == 'today' %}selected{% endif %}>Сегодня</option>
+            <option value="future" {% if days == 'future' %}selected{% endif %}>Будущее</option>
+        </select>
+
+        <button type="submit">Применить</button>
+    </form>
+
     <hr>
+
     <table border="1" cellpadding="5">
         {% if orders %}
         <thead>

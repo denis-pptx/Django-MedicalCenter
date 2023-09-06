@@ -8,6 +8,6 @@ urlpatterns = [
     path('schedule/create/', create_schedule, name='create_schedule'),
     path('schedule/delete/<int:pk>/', delete_schedule, name='delete_schedule'),
     path('schedule/update/<int:pk>/', update_schedule, name='update_schedule'),
-    path('order_list', order_list, name='doctor_order_list'),
+    path('order_list/', order_list, name='doctor_order_list'),
     path('complete_order/<int:order_id>/', complete_order, name='complete_order'),
 ]

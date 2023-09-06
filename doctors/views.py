@@ -107,15 +107,41 @@ def delete_schedule(request, pk):
 
 def order_list(request):
     doctor = request.user.doctorprofile
-    orders = Order.objects.filter((Q(status='pending') | Q(status='completed')) &
-                                  Q(doctor_schedule__doctor=doctor)
-                                  ).order_by('doctor_schedule__date')
+    status = request.GET.get('status', 'all')
+    days = request.GET.get('days', 'all')
+
+    if status == 'completed':
+        status_filter = Q(status='completed')
+    elif status == 'pending':
+        status_filter = Q(status='pending')
+    else:
+        status_filter = Q()
+
+    today = date.today()
+    if days == 'past':
+        days_filter = Q(doctor_schedule__date__lt=today)
+    elif days == 'today':
+        days_filter = Q(doctor_schedule__date=today)
+    elif days == 'future':
+        days_filter = Q(doctor_schedule__date__gt=today)
+    else:
+        days_filter = Q()
+
+    not_cancelled_filter = ~Q(status='cancelled')
+
+    orders = Order.objects.filter(
+        (status_filter & days_filter & not_cancelled_filter) &
+        Q(doctor_schedule__doctor=doctor)
+    ).order_by('doctor_schedule__date')
 
     context = {
         'doctor': doctor,
         'orders': orders,
+        'status': status,
+        'days': days,
     }
     return render(request, 'doctors/order_list.html', context=context)
+
 
 
 @require_POST
