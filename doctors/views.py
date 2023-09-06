@@ -39,7 +39,9 @@ def doctors(request):
 @permission_required('doctors.view_doctorschedule')
 def doctor_schedule(request):
     doctor = request.user.doctorprofile
-    schedule = DoctorSchedule.objects.filter(doctor=doctor).order_by('date')
+    schedule = DoctorSchedule.objects.filter(doctor=doctor,
+                                             date__gte=date.today()
+                                             ).order_by('date')
 
     return render(request, 'doctors/schedule.html', {'doctor_schedule': schedule,
                                                      'doctor': doctor})
