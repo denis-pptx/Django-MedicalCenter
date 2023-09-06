@@ -1,5 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render
+
+from doctors.models import DoctorProfile
 from orders.models import Order, PatientProfile
 from datetime import date
 from django.contrib.auth.decorators import user_passes_test
@@ -84,3 +86,26 @@ def cost_summary(request):
         'end_date': end_date,
         'summary': summary
     })
+
+
+@user_passes_test(lambda user: user.is_superuser)
+def doctor_appointments(request):
+    doctors = DoctorProfile.objects.all()
+    doctor_id = request.GET.get('doctor_id')
+    selected_date = request.GET.get('date')
+
+    orders = []
+    if doctor_id and selected_date:
+        orders = Order.objects.filter(
+            doctor_schedule__doctor_id=doctor_id,
+            doctor_schedule__date=selected_date
+        )
+
+    context = {
+        'doctors': doctors,
+        'doctor_id': int(doctor_id) if doctor_id else None,
+        'selected_date': selected_date,
+        'orders': orders,
+    }
+
+    return render(request, 'stats/doctor_appointments.html', context=context)
