@@ -1,3 +1,5 @@
+from statistics import median
+
 from django.db.models import Q
 from django.shortcuts import render
 
@@ -137,3 +139,17 @@ def services_and_sales(request):
     return render(request, 'stats/services_and_sales.html', context)
 
 
+@user_passes_test(lambda user: user.is_superuser)
+def statistics(request):
+
+    ages = [(date.today() - patient.date_of_birth).days // 365
+            for patient in PatientProfile.objects.all()]
+    avg_age = round(sum(ages) / len(ages), 2) if ages else 0
+    median_age = round(median(ages), 2) if ages else 0
+
+    context = {
+        'avg_age': avg_age,
+        'median_age': median_age,
+    }
+
+    return render(request, 'stats/statistics.html', context)
