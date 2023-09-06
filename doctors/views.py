@@ -67,6 +67,11 @@ def create_schedule(request):
 def update_schedule(request, pk):
     schedule = DoctorSchedule.objects.get(pk=pk)
 
+    orders_on_schedule = Order.objects.filter(doctor_schedule=schedule)
+    if orders_on_schedule.exists():
+        return render(request, 'doctors/cannot_modify_schedule.html',
+                      {'schedule': schedule, 'orders': orders_on_schedule})
+
     if request.user.doctorprofile != schedule.doctor:
         return redirect(reverse('doctor_schedule'))
 
@@ -84,6 +89,11 @@ def update_schedule(request, pk):
 @permission_required('doctors.delete_doctorschedule')
 def delete_schedule(request, pk):
     schedule = get_object_or_404(DoctorSchedule, pk=pk)
+
+    orders_on_schedule = Order.objects.filter(doctor_schedule=schedule)
+    if orders_on_schedule.exists():
+        return render(request, 'doctors/cannot_modify_schedule.html',
+                      {'schedule': schedule, 'orders': orders_on_schedule})
 
     if request.user.doctorprofile != schedule.doctor:
         return redirect('doctor_schedule')
