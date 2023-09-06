@@ -1,0 +1,32 @@
+{% extends 'stats/base_content.html' %}
+
+{% block title %}Список пациентов{% endblock %}
+
+{% block page_content %}
+    <h1>Список пациентов</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Пациент</th>
+                <th>Дата рождения</th>
+                <th>Номер телефона</th>
+                <th>Адрес</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.user.get_full_name }}</td>
+                    <td>{{ patient.date_of_birth }}</td>
+                    <td>{{ patient.phone_number }}</td>
+                    <td>{{ patient.address }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">Пациенты не найдены</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

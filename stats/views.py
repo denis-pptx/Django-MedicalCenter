@@ -111,3 +111,9 @@ def doctor_appointments(request):
 
     return render(request, 'stats/doctor_appointments.html', context=context)
 
+
+@user_passes_test(lambda user: user.is_superuser)
+def patients(request):
+    return render(request, 'stats/patients.html', context={
+        'patients': PatientProfile.objects.order_by('user__first_name', 'user__last_name')
+    })
