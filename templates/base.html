@@ -65,7 +65,7 @@
 
         {% if user.is_superuser %}
             <a class="btn btn-outline-secondary me-3" href="{% url 'admin:index' %}">Superuser</a>
-            <a class="btn btn-outline-secondary me-3" href="{% url 'planned_visits' %}">ABCD</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'planned_visits' %}">Инфо</a>
         {% elif user.is_staff %}
             <a class="btn btn-outline-secondary me-3" href="{% url 'admin:index' %}">Staff</a>
         {% elif perms.doctors.can_edit_profile %}

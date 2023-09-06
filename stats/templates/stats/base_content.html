@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="sidebar">
+      <ul>
+          <li><a href="{% url 'planned_visits' %}">Запланированные посещения</a></li>
+      </ul>
+    </div>
+    {% block page_content %}{% endblock %}
+{% endblock %}
