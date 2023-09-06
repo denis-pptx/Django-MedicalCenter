@@ -6,6 +6,8 @@ from orders.models import Order, PatientProfile
 from datetime import date
 from django.contrib.auth.decorators import user_passes_test
 
+from services.models import Service
+
 
 @user_passes_test(lambda user: user.is_superuser)
 def planned_visits(request):
@@ -117,3 +119,21 @@ def patients(request):
     return render(request, 'stats/patients.html', context={
         'patients': PatientProfile.objects.order_by('user__first_name', 'user__last_name')
     })
+
+
+@user_passes_test(lambda user: user.is_superuser)
+def services_and_sales(request):
+    services = Service.objects.order_by('name')
+
+    sales = 0.0
+    for order in Order.objects.filter(status='completed'):
+        sales += order.service.price
+
+    context = {
+        'services': services,
+        'sales': sales,
+    }
+
+    return render(request, 'stats/services_and_sales.html', context)
+
+
