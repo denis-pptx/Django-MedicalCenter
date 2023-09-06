@@ -51,3 +51,36 @@ def planned_visits(request):
                'patients': patients}
 
     return render(request, 'stats/planned_visits.html', context)
+
+
+@user_passes_test(lambda user: user.is_superuser)
+def cost_summary(request):
+    patients = PatientProfile.objects.all()
+
+    patient_id = request.GET.get('patient_id')
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    summary = []
+    if patient_id and start_date and end_date:
+        selected_patient = PatientProfile.objects.get(id=patient_id)
+        orders = Order.objects.filter(
+            patient=selected_patient,
+            doctor_schedule__date__range=(start_date, end_date)
+        )
+
+        doctor_costs = {}
+        for order in orders:
+            doctor = order.doctor_schedule.doctor
+            cost = doctor_costs.get(doctor, 0) + order.service.price
+            doctor_costs[doctor] = cost
+
+        summary = [(doctor, cost) for doctor, cost in doctor_costs.items()]
+
+    return render(request, 'stats/cost_summary.html', {
+        'patients': patients,
+        'patient_id': int(patient_id) if patient_id else None,
+        'start_date': start_date,
+        'end_date': end_date,
+        'summary': summary
+    })
