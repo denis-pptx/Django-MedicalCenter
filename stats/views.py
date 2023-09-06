@@ -94,18 +94,20 @@ def doctor_appointments(request):
     doctor_id = request.GET.get('doctor_id')
     selected_date = request.GET.get('date')
 
-    orders = []
-    if doctor_id and selected_date:
-        orders = Order.objects.filter(
-            doctor_schedule__doctor_id=doctor_id,
-            doctor_schedule__date=selected_date
-        ).exclude(status='cancelled')
+    patients = []
+    if doctor_id:
+        orders = Order.objects.filter(doctor_schedule__doctor_id=doctor_id).exclude(status='cancelled')
+        if selected_date:
+            orders = orders.filter(doctor_schedule__doctor_id=doctor_id)
+
+        patients = list(set(map(lambda order: order.patient, orders)))
 
     context = {
         'doctors': doctors,
         'doctor_id': int(doctor_id) if doctor_id else None,
         'selected_date': selected_date,
-        'orders': orders,
+        'patients': patients,
     }
 
     return render(request, 'stats/doctor_appointments.html', context=context)
+

@@ -36,12 +36,12 @@
             </tr>
         </thead>
         <tbody>
-            {% for order in orders %}
+            {% for patient in patients %}
                 <tr>
-                    <td>{{ order.patient.user.get_full_name }}</td>
-                    <td>{{ order.patient.date_of_birth }}</td>
-                    <td>{{ order.patient.phone_number }}</td>
-                    <td>{{ order.patient.address }}</td>
+                    <td>{{ patient.user.get_full_name }}</td>
+                    <td>{{ patient.date_of_birth }}</td>
+                    <td>{{ patient.phone_number }}</td>
+                    <td>{{ patient.address }}</td>
                 </tr>
             {% empty %}
                 <tr>
