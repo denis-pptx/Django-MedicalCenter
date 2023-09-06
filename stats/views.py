@@ -69,7 +69,7 @@ def cost_summary(request):
         orders = Order.objects.filter(
             patient=selected_patient,
             doctor_schedule__date__range=(start_date, end_date)
-        )
+        ).exclude(status='cancelled')
 
         doctor_costs = {}
         for order in orders:
@@ -99,7 +99,7 @@ def doctor_appointments(request):
         orders = Order.objects.filter(
             doctor_schedule__doctor_id=doctor_id,
             doctor_schedule__date=selected_date
-        )
+        ).exclude(status='cancelled')
 
     context = {
         'doctors': doctors,
