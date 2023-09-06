@@ -1,6 +1,6 @@
 from statistics import median
 
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Sum
 from django.shortcuts import render
 
 from doctors.models import DoctorProfile
@@ -150,10 +150,14 @@ def statistics(request):
     popular_services = Service.objects.annotate(order_count=Count('order')).order_by('-order_count')
     most_popular_service = popular_services.first()
 
+    profitable_services = Service.objects.annotate(total_profit=Sum('order__service__price')).order_by('-total_profit')
+    most_profitable_service = profitable_services.first()
+
     context = {
         'avg_age': avg_age,
         'median_age': median_age,
         'most_popular_service': most_popular_service,
+        'most_profitable_service': most_profitable_service
     }
 
     return render(request, 'stats/statistics.html', context)
