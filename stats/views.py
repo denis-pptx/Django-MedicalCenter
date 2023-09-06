@@ -1,6 +1,6 @@
 from statistics import median
 
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import render
 
 from doctors.models import DoctorProfile
@@ -147,9 +147,13 @@ def statistics(request):
     avg_age = round(sum(ages) / len(ages), 2) if ages else 0
     median_age = round(median(ages), 2) if ages else 0
 
+    popular_services = Service.objects.annotate(order_count=Count('order')).order_by('-order_count')
+    most_popular_service = popular_services.first()
+
     context = {
         'avg_age': avg_age,
         'median_age': median_age,
+        'most_popular_service': most_popular_service,
     }
 
     return render(request, 'stats/statistics.html', context)
