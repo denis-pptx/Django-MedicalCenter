@@ -30,7 +30,7 @@
                 <td>${{ order.service.price }}</td>
                 <td>{{ order.get_status_display  }}</td>
                 <td>
-                    {% if order.doctor_schedule.date >= today %}
+                    {% if order.doctor_schedule.date >= today and order.status == 'pending' %}
                         <a href="{% url 'cancel_order' order.id %}">Отменить</a>
                     {% endif %}
                 </td>
