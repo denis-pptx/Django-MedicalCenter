@@ -1,5 +1,5 @@
 from django import template
-from doctors.models import Profile, Category
+from doctors.models import DoctorProfile, Category
 
 register = template.Library()
 
@@ -7,8 +7,8 @@ register = template.Library()
 @register.inclusion_tag('doctors/doctors_tag.html')
 def get_doctors(service_category_slug=None):
     if service_category_slug:
-        profiles = Profile.objects.filter(specializations__service_category__slug=service_category_slug).distinct()
+        profiles = DoctorProfile.objects.filter(specializations__service_category__slug=service_category_slug).distinct()
     else:
-        profiles = Profile.objects.all()
+        profiles = DoctorProfile.objects.all()
 
     return {'profiles': profiles}

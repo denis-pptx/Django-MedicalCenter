@@ -3,7 +3,7 @@ from django.core.files.storage import default_storage
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-from .models import Specialization, Category, AcademicDegree, Type, Profile
+from .models import Specialization, Category, AcademicDegree, Type, DoctorProfile, DoctorSchedule
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from datetime import date, timedelta
@@ -11,6 +11,12 @@ from datetime import date, timedelta
 admin.site.register(Category)
 admin.site.register(AcademicDegree)
 admin.site.register(Type)
+
+
+@admin.register(DoctorSchedule)
+class DoctorScheduleAdmin(admin.ModelAdmin):
+    list_display = ('doctor', 'date', 'start_time', 'end_time')
+    list_filter = ('doctor',)
 
 
 @admin.register(Specialization)
@@ -32,16 +38,21 @@ class ExperienceFilter(admin.SimpleListFilter):
             years = int(self.value())
             current_date = date.today()
             min_experience_date = current_date - timedelta(days=365 * years)
-            return queryset.filter(experience__gte=min_experience_date)
+            return queryset.filter(experience__lte=min_experience_date)
         return queryset
 
 
-@admin.register(Profile)
+class DoctorScheduleInline(admin.TabularInline):
+    model = DoctorSchedule
+    extra = 0
+
+
+@admin.register(DoctorProfile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'get_specializations_display',
                     'experience', 'category', 'academic_degree', 'get_types_display')
-
     list_filter = ('specializations', ExperienceFilter, 'category', 'academic_degree', 'types')
+    inlines = [DoctorScheduleInline]
 
     def get_types_display(self, obj):
         return mark_safe(',<br>'.join(str(type)
@@ -56,7 +67,7 @@ class ProfileAdmin(admin.ModelAdmin):
     get_specializations_display.short_description = _('Specialization')
 
 
-@receiver(pre_delete, sender=Profile)
+@receiver(pre_delete, sender=DoctorProfile)
 def delete_doctor_photo(sender, instance, **kwargs):
     if instance.photo:
         default_storage.delete(instance.photo.path)

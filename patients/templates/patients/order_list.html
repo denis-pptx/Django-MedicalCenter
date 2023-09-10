@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title%}Записи{% endblock %}
+
+{% block content %}
+    <h1>Список записей</h1>
+    <hr>
+    <table border="1" cellpadding="5">
+        {% if orders %}
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>День недели</th>
+                <th>Время посещения</th>
+                <th>Врач</th>
+                <th>Услуга</th>
+                <th>Стоимость</th>
+                <th>Статус</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.doctor_schedule.date }}</td>
+                <td>{{ order.doctor_schedule.date|date:"l" }}</td>
+                <td>{{ order.doctor_schedule.start_time|date:"H:i" }} - {{ order.doctor_schedule.end_time|date:"H:i" }}</td>
+                <td>{{ order.doctor_schedule.doctor.user.get_full_name }}</td>
+                <td>{{ order.service.name }}</td>
+                <td>${{ order.service.price }}</td>
+                <td>{{ order.get_status_display  }}</td>
+                <td>
+                    {% if order.doctor_schedule.date >= today and order.status == 'pending' %}
+                        <a href="{% url 'cancel_order' order.id %}">Отменить</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+            <h3>Пусто</h3>
+        {% endif %}
+    </table>
+{% endblock %}

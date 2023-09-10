@@ -65,16 +65,23 @@
 
         {% if user.is_superuser %}
             <a class="btn btn-outline-secondary me-3" href="{% url 'admin:index' %}">Superuser</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'planned_visits' %}">Инфо</a>
         {% elif user.is_staff %}
             <a class="btn btn-outline-secondary me-3" href="{% url 'admin:index' %}">Staff</a>
         {% elif perms.doctors.can_edit_profile %}
-            <a class="btn btn-outline-secondary me-3" href="{% url 'profile' %}">Профиль</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'doctor_profile' %}">Врач</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'doctor_schedule' %}">Расписание</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'doctor_order_list' %}">Записи</a>
+        {% elif user.is_authenticated %}
+            <a class="btn btn-outline-secondary me-3" href="{% url 'patient_profile' %}">Пациент</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'patient_order_list' %}">Записи</a>
         {% endif %}
 
         {% if user.is_authenticated %}
             <a class="btn btn-outline-secondary me-3" href="{% url 'logout' %}">Выйти</a>
         {% else %}
             <a class="btn btn-outline-secondary me-3" href="{% url 'login' %}">Войти</a>
+            <a class="btn btn-outline-secondary me-3" href="{% url 'register' %}">Регистрация</a>
         {% endif %}
     </nav>
 

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title%}Записи{% endblock %}
+
+{% block content %}
+    <h1>Записи врача: {{ doctor.user.get_full_name }}</h1>
+    <form method="GET" action="{% url 'doctor_order_list' %}">
+        <label for="status">Статус:</label>
+        <select name="status" id="status">
+            <option value="all" {% if status == 'all' %}selected{% endif %}>Все</option>
+            <option value="completed" {% if status == 'completed' %}selected{% endif %}>Выполненные</option>
+            <option value="pending" {% if status == 'pending' %}selected{% endif %}>Не выполненные</option>
+        </select>
+
+
+        <label for="days">Дни:</label>
+        <select name="days" id="days">
+            <option value="all" {% if days == 'all' %}selected{% endif %}>Все</option>
+            <option value="past" {% if days == 'past' %}selected{% endif %}>Прошедшие</option>
+            <option value="today" {% if days == 'today' %}selected{% endif %}>Сегодня</option>
+            <option value="future" {% if days == 'future' %}selected{% endif %}>Будущее</option>
+        </select>
+
+        <button type="submit">Применить</button>
+    </form>
+
+    <hr>
+
+    <table border="1" cellpadding="5">
+        {% if orders %}
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>День недели</th>
+                <th>Время посещения</th>
+                <th>Услуга</th>
+                <th>Стоимость</th>
+                <th>Пациент</th>
+                <th>Статус</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.doctor_schedule.date }}</td>
+                <td>{{ order.doctor_schedule.date|date:"l" }}</td>
+                <td>{{ order.doctor_schedule.start_time|date:"H:i" }} - {{ order.doctor_schedule.end_time|date:"H:i" }}</td>
+                <td>{{ order.service.name }}</td>
+                <td>${{ order.service.price }}</td>
+                <td>{{ order.patient.user.get_full_name }}</td>
+                <td>{{ order.get_status_display  }}</td>
+                <td>
+                    <form method="post" action="{% url 'complete_order' order.id %}">
+                        {% csrf_token %}
+                        {% if order.status == 'pending' %}
+                            <button type="submit">Выполнить</button>
+                        {% else %}
+                            <button type="submit" disabled>Выполнить</button>
+                        {% endif %}
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+            <h3>Пусто</h3>
+        {% endif %}
+    </table>
+{% endblock %}

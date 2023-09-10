@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="sidebar">
+      <ul>
+          <li><a href="{% url 'planned_visits' %}">Запланированные посещения</a></li>
+          <li><a href="{% url 'cost_summary' %}">Сводка по стоимости посещений</a></li>
+          <li><a href="{% url 'doctor_appointments' %}">Пациенты врача</a></li>
+          <li><a href="{% url 'patients' %}">Все пациенты</a></li>
+          <li><a href="{% url 'services_and_sales' %}">Все услуги</a></li>
+          <li><a href="{% url 'statistics' %}">Статистика</a></li>
+      </ul>
+    </div>
+    {% block page_content %}{% endblock %}
+{% endblock %}

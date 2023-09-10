@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Оформлено{% endblock %}
+
+{% block content %}
+  <h2>Вы записаны на прием</h2>
+  <h2>Все приемы можно увидеть на вкладке "Записи"</h2>
+  <span>Врач: {{ schedule.doctor.user.get_full_name }}</span><br>
+  <span>Время: {{ schedule.start_time|date:"H:i" }} - {{ schedule.end_time|date:"H:i" }}</span><br>
+  <span>Услуга: {{ service.name }}</span><br>
+  <span>Стоимость: ${{ service.price }}</span><br>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Невозможно изменение{% endblock %}
+
+{% block content %}
+    <h1>Невозможно изменить расписание на этот день</h1>
+    <p>Расписание на дату {{ schedule.date|date:"d.m.Y" }} содержит записи пациентов и не может быть изменено.</p>
+
+    <h2>Записи на этот день:</h2>
+    <ul>
+        {% for order in orders %}
+            <li>{{ order.patient.user.get_full_name }}
+                ({{ order.doctor_schedule.start_time|date:"H:i" }} - {{ order.doctor_schedule.end_time|date:"H:i" }}),
+                {{ order.service.name }} [${{ order.service.price }}]</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'doctor_schedule' %}">Вернуться к расписанию</a>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'stats/base_content.html' %}
+
+{% block title %}Пациенты врача{% endblock %}
+
+{% block page_content %}
+    <h1>Пациенты врача</h1>
+
+    <form method="GET">
+        <div>
+            <label for="doctor_id">Врач:</label>
+            <select name="doctor_id" id="doctor_id">
+                <option value="">Выберите врача</option>
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.id }}" {% if doctor.id == doctor_id %}selected{% endif %}>
+                        {{ doctor.user.get_full_name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="date">Дата:</label>
+            <input type="date" name="date" id="date" value="{{ selected_date }}">
+        </div>
+
+        <button type="submit">Показать</button>
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Имя пациента</th>
+                <th>Дата рождения</th>
+                <th>Номер телефона</th>
+                <th>Адрес</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.user.get_full_name }}</td>
+                    <td>{{ patient.date_of_birth }}</td>
+                    <td>{{ patient.phone_number }}</td>
+                    <td>{{ patient.address }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Пациенты не найдены</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

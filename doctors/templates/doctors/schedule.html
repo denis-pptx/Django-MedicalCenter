@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title%}Расписание врача{% endblock %}
+
+{% block content %}
+    <h1>Расписание: {{ doctor.user.get_full_name }}</h1>
+    <hr>
+    <table border="1">
+        {% if doctor_schedule %}
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>День недели</th>
+                <th>Время работы</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in doctor_schedule %}
+            <tr>
+                <td>{{ schedule.date }}</td>
+                <td>{{ schedule.date|date:"l" }}</td>
+                <td>{{ schedule.start_time|date:"H:i" }} - {{ schedule.end_time|date:"H:i" }}</td>
+                <td>
+                    <a href="{% url 'update_schedule' schedule.id %}">Изменить</a> |
+                    <a href="{% url 'delete_schedule' schedule.id %}">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+            <h3>Пусто</h3>
+        {% endif %}
+    </table>
+    <a href="{% url 'create_schedule' %}">Добавить расписание на день</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Выбор доктора{% endblock %}
+
+{% block content %}
+    <h2>Услуга: "{{ service.name }}"</h2>
+    <h2>Стоимость: ${{ service.price }} </h2>
+    <hr>
+    <form method="POST" action="{% url 'select_doctor_date' %}">
+        {% csrf_token %}
+        <input type="hidden" name="service_id" value="{{ service.id }}">
+
+        <label for="doctor">Выберите врача:</label>
+        <select name="doctor_id" id="doctor">
+            {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.user.get_full_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Выбрать">
+    </form>
+{% endblock %}

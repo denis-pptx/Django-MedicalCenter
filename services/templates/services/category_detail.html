@@ -33,6 +33,9 @@
                                 <tr>
                                     <td>{{ service.name }}</td>
                                     <td>${{ service.price }}</td>
+                                    <td>
+                                        <a href="{% url 'select_doctor' service.id %}" class="btn btn-outline-secondary">Записаться</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

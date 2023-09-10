@@ -1,0 +1,15 @@
+{% extends 'stats/base_content.html' %}
+
+{% block title %}Все услуги{% endblock %}
+
+{% block page_content %}
+    <h1>Все услуги</h1>
+    <hr>
+    <p>Общая сумма продаж: ${{ sales }}</p>
+
+    <ul>
+        {% for service in services %}
+            <li>{{ service.name }}: ${{ service.price }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
