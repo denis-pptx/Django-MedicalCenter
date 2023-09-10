@@ -1,27 +1,10 @@
 from django.shortcuts import render
-from .models import Page
 import requests
 import datetime
 
 
 def home(request):
-    page = Page.objects.filter(page_type='home', active=True).first()
-    return render(request, 'website/home.html', {'content': page})
-
-
-def about(request):
-    page = Page.objects.filter(page_type='about', active=True).first()
-    return render(request, 'website/about.html', {'content': page})
-
-
-def faq(request):
-    page = Page.objects.filter(page_type='faq', active=True).first()
-    return render(request, 'website/faq.html', {'content': page})
-
-
-def requisites(request):
-    page = Page.objects.filter(page_type='requisites', active=True).first()
-    return render(request, 'website/requisites.html', {'content': page})
+    return render(request, 'website/home.html')
 
 
 def get_weather(request):
