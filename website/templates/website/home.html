@@ -4,7 +4,7 @@
 {% block title %}КДС | Главная{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/home.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -27,7 +27,7 @@
         </p>
     </article>
 
-    <section class="our-partners">
+    <div class="our-partners">
         <h3>Наши партнёры</h3>
         <a href="https://minzdrav.gov.by/ru" title="Министерство здравоохранения Республики Беларусь" target="_blank">
             <img class="partner-logo" src="{% static 'website/images/partners_logo/ministerstvo.png' %}">
@@ -38,5 +38,5 @@
         <a href="https://www.lode.by" title="Медицинский центр «ЛОДЭ»">
             <img class="partner-logo" src="{% static 'website/images/partners_logo/lode.png' %}" target="_blank">
         </a>
-    </section>
+    </div>
 {% endblock %}

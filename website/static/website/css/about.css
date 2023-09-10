@@ -1,0 +1,20 @@
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-container img {
+    height: 50px;
+    margin: 0 0 0 20px;
+}
+
+.promo-video video {
+    width: 50%;
+    margin: 10px 0 20px 0;
+}
+
+.certificate {
+    background: pink;
+    width: 50%;
+    text-align: center;
+}
