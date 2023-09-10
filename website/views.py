@@ -3,10 +3,6 @@ import requests
 import datetime
 
 
-def home(request):
-    return render(request, 'website/home.html')
-
-
 def get_weather(request):
     if request.method == 'POST':
         city = request.POST.get('city')
