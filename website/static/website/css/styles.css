@@ -7,3 +7,17 @@
 .nav-link {
     font-size: 130%;
 }
+
+.banner {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.partner-logo {
+    width: 100px;
+    margin: 5px;
+}
+
+.our-partners a {
+  text-decoration: none;
+}

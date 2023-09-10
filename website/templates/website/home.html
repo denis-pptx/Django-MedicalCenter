@@ -1,7 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}КДС | Главная{% endblock %}
 
-{% block content %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
+{% endblock %}
 
+{% block content %}
+    <h1>Главная</h1>
+    <hr>
+
+    <a href="https://www.bsuir.by/">
+        <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
+    </a>
+
+    <article>
+        <h3>Исследование новых методов диагностики и лечения аллергических реакций</h3>
+        <p>
+            Представлены результаты исследования, проведенного в медицинском центре,
+            по разработке и внедрению инновационных методов диагностики и лечения аллергических
+            реакций. Исследование выявило новые аспекты в понимании аллергий и предложило эффективные
+            стратегии терапии, что способствует улучшению качества жизни. Результат ставит медицинский
+            центр КДС в роли лидера в области аллергологии и демонстрирует его стремление к постоянному
+            совершенствованию и улучшению ухода за пациентами.
+        </p>
+    </article>
+
+    <section class="our-partners">
+        <h3>Наши партнёры</h3>
+        <a href="https://minzdrav.gov.by/ru" title="Министерство здравоохранения Республики Беларусь" target="_blank">
+            <img class="partner-logo" src="{% static 'website/images/partners_logo/ministerstvo.png' %}">
+        </a>
+        <a href="https://pharma.by" title="РУП «Белфармация»">
+            <img class="partner-logo" src="{% static 'website/images/partners_logo/belfarmacia.png' %}" target="_blank">
+        </a>
+        <a href="https://www.lode.by" title="Медицинский центр «ЛОДЭ»">
+            <img class="partner-logo" src="{% static 'website/images/partners_logo/lode.png' %}" target="_blank">
+        </a>
+    </section><br>
 {% endblock %}
