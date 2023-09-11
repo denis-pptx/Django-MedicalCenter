@@ -16,6 +16,7 @@
                     <img src="{{ item.image.url }}" alt="News Image">
                 {% endif %}
                 <div class="summary">
+                    <mark>{{ item.publish_date|date:"d.m.Y" }} {{ item.publish_date|time:"H:i" }}</mark><br>
                     {{ item.summary }}
                     <i><a href="{% url 'news_details' item.pk %}">Читать далее...</a></i>
                 </div>
