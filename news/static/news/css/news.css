@@ -1,0 +1,16 @@
+.news-container {
+    margin: 0 0 15px 0;
+}
+.news-container img {
+    width: 40%;
+    margin-right: 10px;
+}
+
+.news-container .content {
+    display: flex;
+    width: 70%;
+}
+
+.news-container .content .summary{
+    text-align: justify;
+}
