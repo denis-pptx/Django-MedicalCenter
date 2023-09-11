@@ -1,6 +1,5 @@
 from django.shortcuts import render
 import requests
-import datetime
 
 
 def get_weather(request):

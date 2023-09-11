@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}КДС | Новости{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'website/css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% for item in news %}
+        <div>
+            <h2><a href="{% url 'news_details' item.pk %}">{{ item.title }}</a></h2>
+            <p>{{ item.summary }}</p>
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="News Image">
+            {% else %}
+                <img src="https://via.placeholder.com/500x500?text=No+Image" alt="No Image">
+            {% endif %}
+        </div>
+    {% empty %}
+        <h1>Список новостей пуст</h1>
+    {% endfor %}
+
+{% endblock %}

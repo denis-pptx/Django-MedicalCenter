@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'patients.apps.PatientsConfig',
     'orders.apps.OrdersConfig',
     'stats.apps.StatsConfig',
+    'news.apps.NewsConfig',
 ]
 
 MIDDLEWARE = [

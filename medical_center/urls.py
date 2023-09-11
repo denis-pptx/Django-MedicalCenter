@@ -29,6 +29,7 @@ urlpatterns = [
     path('patients/', include('patients.urls')),
     path('orders/', include('orders.urls')),
     path('stats/', include('stats.urls')),
+    path('news/', include('news.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('markdownx/', include('markdownx.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
