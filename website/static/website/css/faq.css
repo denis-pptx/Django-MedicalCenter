@@ -1,0 +1,10 @@
+.faq details p {
+    font-style: italic;
+}
+
+.terms {
+    margin-top: 20px;
+}
+.terms dl dd {
+    margin-left: 2%;
+}
