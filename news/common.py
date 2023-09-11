@@ -13,7 +13,8 @@ def get_path_to_html(news):
     )
 
 
-html_template = '''
+html_template = \
+    '''
 <!DOCTYPE html>
 <html lang="en">
 <head>

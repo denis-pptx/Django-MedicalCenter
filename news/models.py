@@ -35,7 +35,8 @@ def create_html_file(sender, instance, created, **kwargs):
         html_path = os.path.join('news', 'templates',
                                  get_path_to_html(instance))
         os.makedirs(os.path.dirname(html_path), exist_ok=True)  # Создать директории, если их нет
-        with open(html_path, 'w') as html_file:
+        with open(html_path, 'w', encoding='utf-8') as html_file:
             html_file.write(html_template.format(title=str(instance.title),
                                                  summary=str(instance.summary),
                                                  publish_date=str(instance.publish_date.strftime("%Y-%m-%d %H:%M:%S"))))
+            
