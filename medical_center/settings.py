@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'doctors.apps.DoctorsConfig',
     'services.apps.ServicesConfig',
     'website.apps.WebsiteConfig',
-    'contacts.apps.ContactsConfig',
     'patients.apps.PatientsConfig',
     'orders.apps.OrdersConfig',
     'stats.apps.StatsConfig',
