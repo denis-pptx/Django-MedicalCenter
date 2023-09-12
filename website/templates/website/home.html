@@ -15,17 +15,21 @@
         <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
     </a>
 
-    <article>
-        <h3>Исследование новых методов диагностики и лечения аллергических реакций</h3>
-        <p>
-            Представлены результаты <strong>исследования</strong>, проведенного в <u>медицинском центре</u>,
-            по разработке и внедрению <strong>инновационных методов</strong> <em>диагностики и лечения аллергических
-            реакций</em>. Исследование выявило <strong>новые аспекты</strong> в понимании аллергий и предложило <strong>эффективные
-            стратегии</strong> терапии, что способствует <strong>улучшению</strong> качества жизни. <em>Результат</em> ставит медицинский
-            центр <u>КДС</u> в роли <strong>лидера</strong> в <em>области аллергологии</em> и демонстрирует его стремление к постоянному
-            совершенствованию и улучшению ухода за пациентами.
-        </p>
-    </article>
+    {% if last_news %}
+        <article class="news-container">
+            <h2>{{ last_news.title }}</h2>
+            <div class="content">
+                {% if last_news.image %}
+                    <img src="{{ last_news.image.url }}" alt="News Image">
+                {% endif %}
+                <div class="summary">
+                    <mark>{{ last_news.publish_date|date:"d.m.Y" }} {{ last_news.publish_date|time:"H:i" }}</mark><br>
+                    {{ last_news.summary }}
+                    <i><a href="{% url 'news_details' last_news.pk %}">Читать далее...</a></i>
+                </div>
+            </div>
+        </article>
+    {% endif %}
 
     <div class="our-partners">
         <h3>Наши партнёры</h3>

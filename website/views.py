@@ -1,6 +1,13 @@
 from django.shortcuts import render
 import requests
 
+from news.models import News
+
+
+def home(request):
+    last_news = News.objects.all().order_by('-publish_date').first()
+    return render(request, 'website/home.html', context={'last_news': last_news})
+
 
 def get_weather(request):
     if request.method == 'POST':
