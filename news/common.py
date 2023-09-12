@@ -15,18 +15,25 @@ def get_path_to_html(news):
 
 html_template = \
     '''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{title}</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}КДС | {{ news.title }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'news/css/news_details.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>{{ news.title }}</h1>
     <hr>
-    <h3>{publish_date}</h3>
-    <p>{summary}</p>
-</body>
-</html>
+    <div class="image-paragraph-container">
+        {% if news.image %}
+            <img src="{{ news.image.url }}">
+        {% endif %}
+        <div class="paragraph-container">
+            <p>{{ news.summary }}</p>
+        </div>
+    </div>
+{% endblock %}
 '''
