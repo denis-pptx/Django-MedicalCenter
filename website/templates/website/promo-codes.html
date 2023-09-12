@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}КДС | Главная{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'website/css/promo-codes.css' %}">
+{% endblock %}
+
+{% block content %}
+    <article class="promo-codes">
+        <h1>Промокоды</h1>
+        <hr>
+        <section class="available">
+            <h3>Действующие</h3>
+            <ul type="circle">
+                <li><mark><strong>1234</strong></mark> — Скидка 10% на прием у терапевта (<time>пн-ср, 9:00-12:00</time>)</li>
+                <li><mark><strong>5678</strong></mark> — Бесплатная консультация у офтальмолога (<time>пт, 14:00-16:00</time>)</li>
+                <li><mark><strong>9012</strong></mark> — Скидка 20% на анализ крови (<time>ср-пт, 10:00-14:00</time>)</li>
+                <li><mark><strong>3456</strong></mark> — Бесплатная диагностика зубов (<time>вт, 13:00-15:00</time>)</li>
+                <li><mark><strong>7890</strong></mark> — Скидка 15% на УЗИ брюшной полости (<time>пн-чт, 11:00-13:00</time>)</li>
+                <li><mark><strong>2345</strong></mark> — Бесплатная консультация кардиолога (<time>ср, 15:00-17:00</time>)</li>
+                <li><mark><strong>6789</strong></mark> — Скидка 25% на массаж спины (<time>вс, 12:00-15:00</time>)</li>
+                <li><mark><strong>0123</strong></mark> — Бесплатная консультация гинеколога (<time>пт, 10:00-12:00</time>)</li>
+                <li><mark><strong>4567</strong></mark> — Скидка 30% на анализ мочи (<time>пн-ср, 14:00-16:00</time>)</li>
+                <li><mark><strong>8901</strong></mark> — Бесплатная диагностика шейки матки (<time>сб, 9:00-11:00</time>)</li>
+                <li><mark><strong>1357</strong></mark> — Скидка 15% на прием курортолога (<time>вс, 13:00-15:00</time>)</li>
+                <li><mark><strong>2468</strong></mark> — Бесплатная консультация невролога (<time >пн, 11:00-13:00</time>)</li>
+                <li><mark><strong>8642</strong></mark> — Скидка 20% на УЗИ печени (<time>вт-ср, 14:00-16:00</time>)</li>
+                <li><mark><strong>9753</strong></mark> — Бесплатная диагностика кожи (<time>ср-пт, 9:00-11:00</time>)</li>
+                <li><mark><strong>3690</strong></mark> — Скидка 25% на прием у лора (<time>ср-чт, 15:00-17:00</time>)</li>
+            </ul>
+        </section>
+        <section class="archive">
+            <details>
+                <summary>Архив</summary>
+                <ul type="square">
+                    <li>2468 — Скидка 15% на массаж шеи и плеч (<time>сб-вс, 10:00-12:00</time>)</li>
+                    <li>8642 — Бесплатная консультация уролога (<time>вс, 14:00-16:00</time>)</li>
+                    <li>9753 — Скидка 20% на анализ крови на аллергии (<time>вт-чт, 11:00-13:00</time>)</li>
+                    <li>3690 — Бесплатная диагностика гастроэнтеролога (<time>ср, 13:00-15:00</time>)</li>
+                    <li>1470 — Скидка 10% на УЗИ почек (<time>пн-ср, 9:00-11:00</time>)</li>
+                    <li>2581 — Бесплатная консультация стоматолога (<time>чт-пт, 14:00-16:00</time>)</li>
+                    <li>3692 — Скидка 25% на прием кардиолога (<time>сб-вс, 12:00-14:00</time>)</li>
+                    <li>4715 — Бесплатная диагностика гинеколога (<time>пн, 16:00-18:00</time>)</li>
+                    <li>5827 — Скидка 30% на массаж ног (<time>вт-ср, 10:00-12:00</time>)</li>
+                </ul>
+            </details>
+        </section>
+    </article>
+{% endblock %}
