@@ -1,16 +1,19 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 
 from orders.models import Order
 from .forms import ProfileForm
 from django.shortcuts import redirect
-from .models import PatientProfile
+from .models import PatientProfile, Feedback
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from datetime import date
 
 
+@login_required
 def profile(request):
     user = request.user
     user_profile = get_object_or_404(PatientProfile, user=user)
@@ -29,6 +32,24 @@ def profile(request):
                                     'last_name': user.last_name})
 
     return render(request, 'patients/profile.html', {'form': form})
+
+
+@login_required
+def create_feedback(request):
+    if request.method == 'POST':
+        rating = request.POST.get('rating')
+        text = request.POST.get('text')
+
+        if rating and 1 <= int(rating) <= 5 and \
+                text and 1 <= len(text) <= 500:
+            Feedback.objects.create(user=request.user.patientprofile,
+                                    rating=rating,
+                                    text=text)
+            return render(request, 'patients/feedback-created.html')
+        else:
+            return HttpResponseBadRequest("Некорректные данные.")
+
+    return render(request, 'patients/create-feedback.html')
 
 
 def register(request):
@@ -75,3 +96,6 @@ def cancel_order(request, order_id):
         order.save()
 
     return redirect(reverse('patient_order_list'))
+
+
+

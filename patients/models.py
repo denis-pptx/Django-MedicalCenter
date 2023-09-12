@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
 from django.contrib.auth.models import User
-from services.models import Service
+from django.utils import timezone
 
 
 class PatientProfile(models.Model):
@@ -17,3 +17,8 @@ class PatientProfile(models.Model):
         return f"{self.user.last_name} {self.user.first_name}"
 
 
+class Feedback(models.Model):
+    user = models.ForeignKey(PatientProfile, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    text = models.TextField(max_length=500)
+    date = models.DateTimeField(default=timezone.now)

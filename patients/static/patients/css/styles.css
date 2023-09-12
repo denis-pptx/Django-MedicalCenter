@@ -1,0 +1,12 @@
+.aside-tab-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.aside-tab-container aside {
+    width: 15%;
+}
+
+.aside-tab-container .tab {
+    width: 85%;
+}

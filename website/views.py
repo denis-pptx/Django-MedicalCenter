@@ -2,6 +2,12 @@ from django.shortcuts import render
 import requests
 
 from news.models import News
+from patients.models import Feedback
+
+
+def feedback_list(request):
+    feedbacks = Feedback.objects.all().order_by('-date')
+    return render(request, 'website/feedback-list.html', {'feedbacks': feedbacks})
 
 
 def home(request):
