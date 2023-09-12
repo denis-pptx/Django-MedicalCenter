@@ -12,7 +12,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = DoctorProfile
         fields = ['first_name', 'last_name', 'specializations', 'experience',
-                  'category', 'academic_degree', 'types', 'photo']
+                  'category', 'academic_degree', 'types', 'photo', 'phone_number', 'email']
 
 
 class DoctorScheduleForm(forms.ModelForm):

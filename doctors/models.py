@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from services.models import Category as ServiceCategory
 from datetime import date, timedelta
-
+import re
 
 class Specialization(models.Model):
     name = models.CharField(max_length=100)
@@ -47,6 +47,10 @@ class DoctorProfile(models.Model):
     types = models.ManyToManyField(Type)
     photo = models.ImageField(upload_to='images/doctors/profile_photos', null=True, blank=True)
 
+    phone_number = models.CharField(max_length=17, null=True, blank=True,
+                                    help_text="Формат: +375-XX-XXX-XX-XX")
+    email = models.EmailField(null=True, blank=True)
+
     def __str__(self):
         return self.user.get_full_name()
 
@@ -58,6 +62,9 @@ class DoctorProfile(models.Model):
 
         if self.experience and self.experience > datetime.now().date():
             raise ValidationError({'experience': "Experience date should not be in the future."})
+
+        if self.phone_number and not re.fullmatch(r"\+375-\d{2}-\d{3}-\d{2}-\d{2}", self.phone_number):
+            raise ValidationError({'phone_number': "Некорректный номер телефона"})
 
 
 class DoctorSchedule(models.Model):

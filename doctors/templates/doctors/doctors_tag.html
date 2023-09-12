@@ -48,6 +48,20 @@
                     <span class="card-text">{{ profile.types.all|join:", " }}</span>
                 </div>
                 {% endif %}
+
+                {% if profile.phone_number %}
+                <div class="d-flex align-items-center align-items-baseline">
+                    <h6 class="card-subtitle text-muted me-2">Телефон:</h6>
+                    <span class="card-text">{{ profile.phone_number }}</span>
+                </div>
+                {% endif %}
+
+                {% if profile.email %}
+                <div class="d-flex align-items-center align-items-baseline">
+                    <h6 class="card-subtitle text-muted me-2">Почта:</h6>
+                    <span class="card-text">{{ profile.email }}</span>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -143,7 +143,6 @@ def order_list(request):
     return render(request, 'doctors/order_list.html', context=context)
 
 
-
 @require_POST
 def complete_order(request, order_id):
     doctor = request.user.doctorprofile
