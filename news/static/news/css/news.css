@@ -8,6 +8,7 @@
 
 .news-container .content {
     display: flex;
+    align-items: flex-start;
     width: 70%;
 }
 
