@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 from datetime import date
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -10,8 +10,18 @@ class PatientProfile(models.Model):
     date_of_birth = models.DateField(
         validators=[MinValueValidator(date(1900, 1, 1)), MaxValueValidator(date.today())]
     )
-    phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
+
+    phone_number = models.CharField(
+        max_length=17,
+        validators=[
+            RegexValidator(
+                regex=r"\+375-\d{2}-\d{3}-\d{2}-\d{2}",
+                message='Некорректный номер телефона',
+            ),
+        ],
+        help_text="Формат: +375-XX-XXX-XX-XX"
+    )
 
     def __str__(self):
         return f"{self.user.last_name} {self.user.first_name}"
