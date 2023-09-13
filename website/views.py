@@ -46,7 +46,7 @@ def get_gender(request):
 
         if not data['probability']:
             response.status_code = 400
-            
+
         if response.status_code == 200:
             return render(request, 'website/gender.html',
                           {'name': data['name'],
