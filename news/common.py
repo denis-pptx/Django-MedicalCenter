@@ -15,7 +15,7 @@ def get_path_to_html(news):
 
 html_template = \
     '''
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
 {% load static %}
 
 {% block title %}КДС | {{ news.title }}{% endblock %}
