@@ -3,12 +3,15 @@
 {% bootstrap_javascript %}
 {% load static %}
 
+{% load custom_tags %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title%}{% endblock %}</title>
     <link rel="icon" href="{% static 'website/images/logo/logo_filled.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'website/css/base.css' %}">
     <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
     {% block styles %}{% endblock %}
 </head>
@@ -93,8 +96,17 @@
         {% endif %}
     </nav>
 
-    <main class="container">
-        {% block content %}{% endblock %}
-    </main>
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            {% current_times as times %}
+            Local Time: {{ times.local_time}}<br>
+            UTC Time: {{ times.utc_time }}<br>
+            Time zone: {{ times.time_zone }}<br>
+        </footer>
+    </div>
 </body>
 </html>
