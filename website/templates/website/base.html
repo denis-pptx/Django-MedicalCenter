@@ -102,10 +102,18 @@
         </main>
 
         <footer>
-            {% current_times as times %}
-            Local Time: {{ times.local_time}}<br>
-            UTC Time: {{ times.utc_time }}<br>
-            Time zone: {{ times.time_zone }}<br>
+            <section class="time">
+                {% current_times as times %}
+                Local Time: {{ times.local_time}}<br>
+                UTC Time: {{ times.utc_time }}<br>
+                Time zone: {{ times.time_zone }}<br>
+            </section>
+            <section class="calendar">
+                {% date_range num=7 as range %}
+                {% for date in range %}
+                    <span>{{ date|date:"d.m.Y" }} {{ date|date:"l" }}</span><br>
+                {% endfor %}
+            </section>
         </footer>
     </div>
 </body>

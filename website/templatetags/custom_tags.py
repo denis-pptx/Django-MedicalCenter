@@ -1,6 +1,5 @@
+from datetime import datetime, timezone, timedelta
 from django import template
-from datetime import datetime, timezone
-
 register = template.Library()
 
 
@@ -12,3 +11,9 @@ def current_times():
         'time_zone': datetime.now().astimezone().tzinfo
     }
 
+
+@register.simple_tag
+def date_range(num):
+    today = datetime.now()
+    date_list = [today + timedelta(days=i) for i in range(num)]
+    return date_list
