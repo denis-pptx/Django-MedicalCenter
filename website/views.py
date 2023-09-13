@@ -42,9 +42,12 @@ def get_gender(request):
         url = f'https://api.genderize.io/?name={name}'
 
         response = requests.get(url)
+        data = response.json()
 
+        if not data['probability']:
+            response.status_code = 400
+            
         if response.status_code == 200:
-            data = response.json()
             return render(request, 'website/gender.html',
                           {'name': data['name'],
                            'gender': data['gender'],
