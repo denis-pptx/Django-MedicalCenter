@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from .models import Category
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 class CategoryListView(ListView):
@@ -16,4 +19,6 @@ def category_detail(request, slug):
         'category': category,
         'subcategories': subcategories,
     }
+
+    logging.info('Displayed category details')
     return render(request, 'services/category_detail.html', context)

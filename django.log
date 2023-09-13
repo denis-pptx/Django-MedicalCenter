@@ -1,0 +1,103 @@
+INFO 2023-09-14 01:40:29,922 autoreload Watching for file changes with StatReloader
+INFO 2023-09-14 01:40:35,423 autoreload Watching for file changes with StatReloader
+DEBUG 2023-09-14 01:40:36,814 views Это сообщение для лога
+INFO 2023-09-14 01:41:56,303 autoreload D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\medical_center\settings.py changed, reloading.
+INFO 2023-09-14 01:41:56,715 Watching for file changes with StatReloader
+INFO 2023-09-14 01:42:19,767 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:42:20,146 Watching for file changes with StatReloader
+INFO 2023-09-14 01:42:23,619 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:42:24,069 Watching for file changes with StatReloader
+INFO 2023-09-14 01:49:25,714 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:49:26,119 Watching for file changes with StatReloader
+INFO 2023-09-14 01:49:33,716 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:49:34,116 Watching for file changes with StatReloader
+INFO 2023-09-14 01:50:38,331 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:50:38,715 Watching for file changes with StatReloader
+INFO 2023-09-14 01:50:55,571 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:50:55,953 Watching for file changes with StatReloader
+INFO 2023-09-14 01:50:57,710 a list of reviews is displayed
+INFO 2023-09-14 01:51:25,309 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:51:25,701 Watching for file changes with StatReloader
+INFO 2023-09-14 01:51:33,279 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:51:33,669 Watching for file changes with StatReloader
+INFO 2023-09-14 01:51:54,665 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:51:55,091 Watching for file changes with StatReloader
+INFO 2023-09-14 01:52:57,307 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:52:57,689 Watching for file changes with StatReloader
+INFO 2023-09-14 01:53:49,602 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:53:49,971 Watching for file changes with StatReloader
+INFO 2023-09-14 01:54:21,216 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:54:21,588 Watching for file changes with StatReloader
+INFO 2023-09-14 01:54:47,703 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\website\views.py changed, reloading.
+INFO 2023-09-14 01:54:48,177 Watching for file changes with StatReloader
+INFO 2023-09-14 01:54:51,408 A list of reviews is displayed
+DEBUG 2023-09-14 01:54:54,880 Starting new HTTPS connection (1): api.genderize.io:443
+DEBUG 2023-09-14 01:54:55,508 https://api.genderize.io:443 "GET /?name=3 HTTP/1.1" 200 54
+WARNING 2023-09-14 01:54:55,508 Gender API: data['probability'] is null
+WARNING 2023-09-14 01:54:55,508 Gender API: code 400
+INFO 2023-09-14 01:55:17,100 The main page is opened
+INFO 2023-09-14 01:56:23,699 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\stats\views.py changed, reloading.
+INFO 2023-09-14 01:56:24,087 Watching for file changes with StatReloader
+INFO 2023-09-14 01:57:13,926 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\stats\views.py changed, reloading.
+INFO 2023-09-14 01:57:14,330 Watching for file changes with StatReloader
+INFO 2023-09-14 01:57:14,581 The main page is opened
+INFO 2023-09-14 01:57:17,913 The main page is opened
+INFO 2023-09-14 01:57:20,552 Displayed planned visits
+INFO 2023-09-14 01:57:22,132 Displayed doctor appointments
+INFO 2023-09-14 01:57:53,857 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\stats\views.py changed, reloading.
+INFO 2023-09-14 01:57:54,232 Watching for file changes with StatReloader
+INFO 2023-09-14 01:57:57,940 Displayed statistics
+INFO 2023-09-14 01:58:45,228 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\services\views.py changed, reloading.
+INFO 2023-09-14 01:58:45,605 Watching for file changes with StatReloader
+INFO 2023-09-14 02:00:05,250 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\patients\views.py changed, reloading.
+INFO 2023-09-14 02:00:05,632 Watching for file changes with StatReloader
+INFO 2023-09-14 02:00:21,472 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\patients\views.py changed, reloading.
+INFO 2023-09-14 02:00:21,856 Watching for file changes with StatReloader
+INFO 2023-09-14 02:01:25,087 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\patients\views.py changed, reloading.
+INFO 2023-09-14 02:01:25,483 Watching for file changes with StatReloader
+INFO 2023-09-14 02:02:54,402 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\patients\views.py changed, reloading.
+INFO 2023-09-14 02:02:54,806 Watching for file changes with StatReloader
+INFO 2023-09-14 02:03:20,919 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\patients\views.py changed, reloading.
+INFO 2023-09-14 02:03:21,296 Watching for file changes with StatReloader
+INFO 2023-09-14 02:03:50,512 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\orders\views.py changed, reloading.
+INFO 2023-09-14 02:03:50,904 Watching for file changes with StatReloader
+INFO 2023-09-14 02:04:08,857 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\orders\views.py changed, reloading.
+INFO 2023-09-14 02:04:09,224 Watching for file changes with StatReloader
+INFO 2023-09-14 02:04:18,865 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\orders\views.py changed, reloading.
+INFO 2023-09-14 02:04:19,252 Watching for file changes with StatReloader
+INFO 2023-09-14 02:04:42,323 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\news\views.py changed, reloading.
+INFO 2023-09-14 02:04:42,687 Watching for file changes with StatReloader
+INFO 2023-09-14 02:04:48,211 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\news\views.py changed, reloading.
+INFO 2023-09-14 02:04:48,596 Watching for file changes with StatReloader
+INFO 2023-09-14 02:05:47,719 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:05:48,110 Watching for file changes with StatReloader
+INFO 2023-09-14 02:06:01,886 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:06:02,269 Watching for file changes with StatReloader
+INFO 2023-09-14 02:06:12,927 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:06:13,306 Watching for file changes with StatReloader
+INFO 2023-09-14 02:06:56,946 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:06:57,374 Watching for file changes with StatReloader
+INFO 2023-09-14 02:07:39,962 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:07:40,337 Watching for file changes with StatReloader
+INFO 2023-09-14 02:07:51,015 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:07:51,392 Watching for file changes with StatReloader
+INFO 2023-09-14 02:08:08,261 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:08:08,628 Watching for file changes with StatReloader
+INFO 2023-09-14 02:08:19,310 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:08:19,697 Watching for file changes with StatReloader
+INFO 2023-09-14 02:08:26,279 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:08:26,679 Watching for file changes with StatReloader
+INFO 2023-09-14 02:08:37,357 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:08:37,732 Watching for file changes with StatReloader
+INFO 2023-09-14 02:08:48,406 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:08:48,780 Watching for file changes with StatReloader
+INFO 2023-09-14 02:08:58,429 D:\Studies\BSUIR\Semester_5\Mweb-AppDT\Django-MedicalCenter\doctors\views.py changed, reloading.
+INFO 2023-09-14 02:08:58,815 Watching for file changes with StatReloader
+INFO 2023-09-14 02:09:01,053 The main page is opened
+INFO 2023-09-14 02:09:05,354 The main page is opened
+INFO 2023-09-14 02:09:08,400 The main page is opened
+INFO 2023-09-14 02:09:09,126 Doctors schedule list displayed
+INFO 2023-09-14 02:09:16,719 Schedule is correct, saved
+INFO 2023-09-14 02:09:16,728 Doctors schedule list displayed
+INFO 2023-09-14 02:18:35,682 Doctors list displayed
+INFO 2023-09-14 02:20:29,677 Watching for file changes with StatReloader

@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import user_passes_test
 
 from services.models import Service
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 @user_passes_test(lambda user: user.is_superuser)
 def planned_visits(request):
@@ -56,6 +59,7 @@ def planned_visits(request):
                'patient_id': int(patient_id) if patient_id else None,
                'patients': patients}
 
+    logger.info('Displayed planned visits')
     return render(request, 'stats/planned_visits.html', context)
 
 
@@ -83,6 +87,7 @@ def cost_summary(request):
 
         summary = [(doctor, cost) for doctor, cost in doctor_costs.items()]
 
+    logger.info('Displayed cost summary')
     return render(request, 'stats/cost_summary.html', {
         'patients': patients,
         'patient_id': int(patient_id) if patient_id else None,
@@ -113,11 +118,13 @@ def doctor_appointments(request):
         'patients': patients,
     }
 
+    logger.info('Displayed doctor appointments')
     return render(request, 'stats/doctor_appointments.html', context=context)
 
 
 @user_passes_test(lambda user: user.is_superuser)
 def patients(request):
+    logger.info('Displayed patients')
     return render(request, 'stats/patients.html', context={
         'patients': PatientProfile.objects.order_by('user__first_name', 'user__last_name')
     })
@@ -136,6 +143,7 @@ def services_and_sales(request):
         'sales': sales,
     }
 
+    logger.info('Displayed services_and_sales')
     return render(request, 'stats/services_and_sales.html', context)
 
 
@@ -160,4 +168,5 @@ def statistics(request):
         'most_profitable_service': most_profitable_service
     }
 
+    logger.info('Displayed statistics')
     return render(request, 'stats/statistics.html', context)
