@@ -1,5 +1,6 @@
 {% extends 'website/base.html' %}
 {% load static %}
+{% load tz %}
 
 {% block title %}КДС | Отзывы{% endblock %}
 
@@ -14,7 +15,7 @@
 
     {% for feedback in feedbacks %}
         <div class="feedback">
-            <mark>{{ feedback.date|date:"d.m.Y" }} {{ feedback.date|time:"H:i" }}</mark><br>
+            <mark>{{ feedback.date|date:"d/m/y H:i:s e" }}</mark> ({{ feedback.date|timezone:"UTC"|date:"d/m/y H:i:s e" }})<br>
             Пациент: <i>{{ feedback.user.user.get_full_name}}</i><br>
             Оценка: <i>{{ feedback.rating }} / 5</i><br>
             Текст: <i class="text">{{ feedback.text }}</i>

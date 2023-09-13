@@ -1,5 +1,7 @@
 from datetime import datetime, timezone, timedelta
 from django import template
+from django.utils import timezone
+
 register = template.Library()
 
 
@@ -8,7 +10,7 @@ def current_times():
     return {
         'local_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'utc_time':  datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
-        'time_zone': datetime.now().astimezone().tzinfo
+        'time_zone': timezone.get_current_timezone()
     }
 
 

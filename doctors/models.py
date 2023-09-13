@@ -73,6 +73,9 @@ class DoctorSchedule(models.Model):
     start_time = models.TimeField(default='09:00')
     end_time = models.TimeField(default='17:00')
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return f"{self.doctor}"
 
