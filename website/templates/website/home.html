@@ -11,9 +11,30 @@
     <h1>Главная</h1>
     <hr>
 
-    <a href="https://www.kdsmedical.by">
-        <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
-    </a>
+    <article class="introduction">
+        <a href="https://www.kdsmedical.by">
+            <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
+        </a>
+        <pre>
+            <code>
+def say_hello():
+    print('Привет, Медицинский центр КДС!')
+            </code>
+        </pre>
+        <div>
+            Добрый доктор <wbr>Айболит!<br>
+            Он под деревом <wbr>сидит.<br>
+            Приходи к нему <wbr>лечиться<br>
+            И корова, и волчица,<br>
+
+            И жучок, и червячок,<br>
+            И медведица!<br>
+            <br>
+            Всех излечит, исцелит<br>
+            Добрый доктор <wbr>Айболит!
+        </div>
+    </article>
+
 
     {% if last_news %}
         <article class="news-container">
