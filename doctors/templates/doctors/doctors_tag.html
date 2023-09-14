@@ -12,11 +12,11 @@
             <span class="name">{{ profile.user.get_full_name }}</span>
 
             {% if profile.specializations.all %}
-                <div class="specializations" itemprop="specializations">>{{ profile.specializations.all|join:", " }}</div>
+                <div class="specializations" itemprop="specializations">{{ profile.specializations.all|join:", " }}</div>
             {% endif %}
 
             {% if profile.experience %}
-                <div class="property" itemprop="experience">>Опыт работы: <i>from {{ profile.experience }}</i></div>
+                <div class="property" itemprop="experience">Опыт работы: <i>from {{ profile.experience }}</i></div>
             {% endif %}
 
             {% if profile.category %}
