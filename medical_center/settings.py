@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'markdownx',
     'bootstrap5',
     'django_bootstrap5',
     'django_non_dark_admin',
