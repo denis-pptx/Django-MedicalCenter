@@ -1,14 +1,15 @@
 from statistics import median
-
+import matplotlib.pyplot as plt
 from django.db.models import Q, Count, Sum
 from django.shortcuts import render
-
+import io
+import urllib, base64
 from doctors.models import DoctorProfile
 from orders.models import Order, PatientProfile
 from datetime import date
 from django.contrib.auth.decorators import user_passes_test
 
-from services.models import Service
+from services.models import Service, Category
 
 import logging
 logger = logging.getLogger(__name__)
@@ -170,3 +171,32 @@ def statistics(request):
 
     logger.info('Displayed statistics')
     return render(request, 'stats/statistics.html', context)
+
+
+def generate_category_chart():
+    completed_orders = Order.objects.filter(status='completed')
+    categories = Category.objects.annotate(
+        total_earnings=Sum('subcategory__service__price',
+                           filter=Q(subcategory__service__order__in=completed_orders))
+    )
+
+    category_names = [category.name for category in categories]
+    earnings = [category.total_earnings or 0 for category in categories]
+
+    plt.figure()
+    plt.bar(category_names, earnings)
+    plt.xlabel('Категория')
+    plt.ylabel('Сумма заработанных денег')
+    plt.title('Диаграмма заработанных денег по категориям услуг')
+
+    with io.BytesIO() as buffer:
+        plt.savefig(buffer, format='png')
+        buffer.seek(0)
+        graphic = base64.b64encode(buffer.read()).decode('utf-8')
+
+    return graphic
+
+
+def category_chart(request):
+    graphic = generate_category_chart()
+    return render(request, 'stats/category_chart.html', {'graphic': graphic})
