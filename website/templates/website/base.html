@@ -22,19 +22,29 @@
         <section>
             <a href="{% url 'home' %}">Главная</a>
             <a href="{% url 'news' %}">Новости</a>
-            <a href="{% url 'doctors_list' %}">Врачи</a>
-            <a href="{% url 'category_list' %}">Направления</a>
-            <a  href="{% url 'feedback-list' %}">Отзывы</a>
             <div class="dropdown">
-                <button class="dropbtn">Остальное</button>
-                <div class="dropdown-content" id="myDropdown">
-                    <a href="{% url 'faq' %}">FAQ</a>
+                <button class="dropbtn">О нас</button>
+                <div class="dropdown-content">
                     <a href="{% url 'about' %}">О нас</a>
-                    <a href="{% url 'promo-codes' %}">Акции</a>
                     <a href="{% url 'private-policy' %}">Политика конфиденциальности</a>
+                    <a href="{% url 'faq' %}">FAQ</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Центр</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'doctors_list' %}">Врачи</a>
+                    <a href="{% url 'category_list' %}">Направления</a>
+                    <a href="{% url 'feedback-list' %}">Отзывы</a>
+                    <a href="{% url 'promo-codes' %}">Акции</a>
                     <a href="{% url 'vacancies' %}">Вакансии</a>
-                    <a href="{% url 'weather' %}">API: Погода</a>
-                    <a href="{% url 'gender' %}">API: Пол</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">API</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'weather' %}">Погода</a>
+                    <a href="{% url 'gender' %}">Пол</a>
                 </div>
             </div>
         </section>
