@@ -116,3 +116,7 @@ q:lang(fr) {
 input[type="submit"], button {
     cursor: pointer; 
 }
+
+body {
+    background-image: linear-gradient(to bottom, rgba(190,255,241), rgba(208,208,255), rgba(190,255,241));
+}
