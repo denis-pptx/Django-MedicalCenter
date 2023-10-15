@@ -1,4 +1,10 @@
 {% extends "patients/personal-area-generic.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'patients/css/styles.css' %}">
+{% endblock %}
+
 
 {% block tab %}
     <h1>Отзыв</h1>

@@ -73,5 +73,23 @@ a:active {
 }
 
 :focus {
-    outline: 2px solid OrangeRed;
+    outline: 2px dashed rgb(255, 174, 0);
+}
+
+
+
+input:required {
+    border: 2px solid red;
+}
+
+input:enabled {
+    background-color: LightCyan;
+}
+
+input:focus {
+    background-color: rgb(0, 255, 149);
+}
+input:disabled {
+    opacity: 0.7; 
+    border: 2px dashed black;
 }

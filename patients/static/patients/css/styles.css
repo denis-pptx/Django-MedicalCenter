@@ -10,3 +10,8 @@
 .aside-tab-container .tab {
     width: 85%;
 }
+
+
+input:out-of-range {
+    background-color: rgb(255, 0, 140);
+}

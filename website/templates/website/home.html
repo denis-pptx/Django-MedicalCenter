@@ -45,7 +45,7 @@ def say_hello():
                 {% endif %}
                 <div class="summary">
                     <mark>{{ last_news.publish_date|date:"d.m.Y" }} {{ last_news.publish_date|time:"H:i" }}</mark><br>
-                    {{ last_news.summary }}
+                    {{ last_news.text|slice:200 }}...
                     <i><a href="{% url 'news_details' last_news.pk %}">Читать далее...</a></i>
                 </div>
             </div>

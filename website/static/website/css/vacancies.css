@@ -1,9 +1,13 @@
+.table thead tr th {
+    background-color: blueviolet;
+}
+
 tbody tr td:first-child {
-    background-color:gold;
+    background-color: Moccasin;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: gray;
+    background-color: greenyellow;
 }
 thead tr th:nth-child(even) {
     color: red;

@@ -1,0 +1,10 @@
+input[type="text"], input[type="password"] {
+    border-radius: 10px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    transition: 0.5s;
+}
+input[type="radio"]:checked, input[type="checkbox"]:checked {
+    transform: scale(2) translateX(5px);
+}
