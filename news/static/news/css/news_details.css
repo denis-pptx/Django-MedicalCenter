@@ -1,9 +1,0 @@
-.image-paragraph-container {
-    display: flex;
-    align-items: flex-start;
-}
-
-.image-paragraph-container img {
-    width: 30%;
-    margin: 0 10px 10px 0;
-}

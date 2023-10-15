@@ -20,7 +20,7 @@
                     {% endif %}
                     <div class="summary">
                         <mark>{{ item.publish_date|date:"d.m.Y" }} {{ item.publish_date|time:"H:i" }}</mark><br>
-                        {{ item.summary }}
+                        {{ item.text|slice:200 }}...
                         <i><a href="{% url 'news_details' item.pk %}">Читать далее...</a></i>
                     </div>
                 </div>

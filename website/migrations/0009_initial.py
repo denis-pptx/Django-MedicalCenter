@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=200)),
                 ('summary', models.TextField()),
-                ('image', models.ImageField(blank=True, null=True, upload_to=news.models.upload_to_news_image)),
+                ('image', models.ImageField(blank=True, null=True)),
                 ('publish_date', models.DateTimeField(auto_now_add=True)),
             ],
         ),
