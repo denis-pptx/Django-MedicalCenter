@@ -1,7 +1,102 @@
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
+{% load static %}
 
-{% block title %}О нас{% endblock %}
+{% block title %}КДС | О нас{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'website/css/about.css' %}">
+{% endblock %}
 
 {% block content %}
-    {{ content.formatted_markdown|safe }}
+    <div class="header-container">
+        <h1>О нас</h1>
+        <img src="{% static 'website/images/logo/logo.png' %}" alt="logo">
+    </div>
+    <hr>
+
+    <article>
+        <h3>Информация о компании</h3>
+        <p>
+            <strong><abbr title="Кончик Денис Сергеевич">"КДС"</abbr></strong> - это <em>современный медицинский центр</em>,
+            расположенный в центре Минска, Беларусь. Мы специализируемся на предоставлении высококачественных
+            <strong>медицинских услуг</strong> и заботимся о вашем <em>здоровье</em> и <em>благополучии</em>.
+            Наш центр оборудован <u>современным оборудованием</u> и наша команда врачей и медицинских специалистов
+            обладает <strong>богатым опытом</strong> и <strong>профессиональными навыками</strong>.
+        </p>
+        <p>
+            Наши услуги <em>включают</em> в себя:
+            <ul type="circle">
+                <li>Общую медицинскую консультацию</li>
+                <li>Диагностику и лечение различных заболеваний</li>
+                <li>Хирургические вмешательства</li>
+                <li>Лабораторные исследования</li>
+                <li>Физиотерапию и реабилитацию</li>
+                <li>Стоматологическое обслуживание</li>
+                <li>Психологическую поддержку</li>
+            </ul>
+        </p>
+        <p>
+            <blockquote>
+                Наша <em>миссия</em> - помогать нашим пациентам <strong>возвращаться к здоровью</strong> и обеспечивать
+                им высокий уровень <em>медицинской заботы</em>.
+                <footer>— Кончик Денис, <cite>основатель медицинского центра</cite></footer>
+            </blockquote>
+        </p>
+    </article>
+
+    <article id="history">
+        <h3>История</h3>
+        <p>
+            <strong>"КДС"</strong> был основан в <time datetime="1995-07-15">1995 году</time> в Минске группой
+            <em>выдающихся медицинских специалистов</em>. С момента своего основания, центр стремился предоставлять
+            лучшие медицинские услуги и внедрять новейшие медицинские технологии.
+        </p>
+        <ul>
+            <li><strong><time datetime="1995-07-15">1995:</time></strong> Основание медицинского центра "КДС" в Минске.</li>
+            <li><strong><time datetime="2000-04-19">2000:</time></strong> Внедрение современного оборудования для диагностики и лечения.</li>
+            <li><strong><time datetime="2010-11-15">2010:</time></strong> Расширение специализаций и услуг, включая стоматологию и физиотерапию.</li>
+            <li><strong><time datetime="2015-02-26">2015:</time></strong> Открытие современной клиники и приобретение новых зданий.</li>
+            <li><strong><time datetime="2020-04-02">2020:</time></strong> Центр "КДС" признан одним из ведущих медицинских учреждений в регионе.</li>
+        </ul>
+        <p>
+            Наша история - это история постоянного развития и стремления к лучшему
+            в области <em>медицинского обслуживания</em>.
+        </p>
+    </article>
+
+    <article id="requisites">
+        <h3>Реквизиты</h3>
+
+        <ul type="disc">
+            <li><i>Название:</i> Медицинский Центр "КДС"</li>
+            <li><i>Адрес:</i> ул. Гикало, 9. Минск, Беларусь</li>
+            <li><i>Телефон:</i> +375 12 345-67-89</li>
+            <li><i>Электронная почта:</i> info@kdsmedical.by</li>
+            <li><i>Официальный веб-сайт:</i> www.kdsmedical.by</li>
+            <li><i>Регистрационный номер:</i> 12345678</li>
+            <li><i>Руководитель:</i> Кончик Денис Сергеевич, <br>нобелевский лауреат</li>
+        </ul>
+    </article>
+
+    <div class="promo-video">
+        <h3>Промо-ролик</h3>
+        <video src="{% static 'website/video/promo.mp4' %}" loop controls muted autoplay>Video cannot be displayed</video><br>
+        <audio controls muted>
+            <source src="{% static 'website/audio/gimn.mp3'%}"/>
+            Audio content cannot be played
+        </audio>
+
+    </div>
+
+    <section>
+        <h3>Сертификат</h3>
+        <div class="certificate">
+            <h4>Единый реестр медцентров</h4>
+            <h4>Свидетельство</h4>
+            <h5>ООО "КДС"</h5>
+            <h5><u>Регистрационный номер: 12345678</u></h5>
+            <h6>г. Минск, 11 сентября 2012</h6>
+        </div>
+    </section>
+
 {% endblock %}

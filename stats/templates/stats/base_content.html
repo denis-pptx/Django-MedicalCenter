@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
 {% block content %}
     <div class="sidebar">
       <ul>
@@ -8,6 +8,7 @@
           <li><a href="{% url 'patients' %}">Все пациенты</a></li>
           <li><a href="{% url 'services_and_sales' %}">Все услуги</a></li>
           <li><a href="{% url 'statistics' %}">Статистика</a></li>
+          <li><a href="{% url 'category_chart' %}">Диаграмма</a></li>
       </ul>
     </div>
     {% block page_content %}{% endblock %}

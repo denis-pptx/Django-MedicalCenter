@@ -1,0 +1,7 @@
+.feedback {
+    margin-bottom: 1.5em;
+}
+
+.feedback .text {
+    word-wrap: break-word;
+}

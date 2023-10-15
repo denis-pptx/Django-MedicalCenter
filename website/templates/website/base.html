@@ -1,0 +1,96 @@
+{% load static %}
+<!--{% load bootstrap5 %}-->
+<!--{% bootstrap_css %}-->
+<!--{% bootstrap_javascript %}-->
+
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="establishment" content="Медицинский центр КДС" />
+
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="icon" href="{% static 'website/images/logo/logo_filled.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/navbar.css' %}">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <section>
+            <a href="{% url 'home' %}">Главная</a>
+            <a href="{% url 'news' %}">Новости</a>
+            <div class="dropdown">
+                <button class="dropbtn">О нас</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'about' %}">О нас</a>
+                    <a href="{% url 'private-policy' %}">Политика конфиденциальности</a>
+                    <a href="{% url 'faq' %}">FAQ</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Центр</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'doctors_list' %}">Врачи</a>
+                    <a href="{% url 'category_list' %}">Направления</a>
+                    <a href="{% url 'feedback-list' %}">Отзывы</a>
+                    <a href="{% url 'promo-codes' %}">Акции</a>
+                    <a href="{% url 'vacancies' %}">Вакансии</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">API</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'weather' %}">Погода</a>
+                    <a href="{% url 'gender' %}">Пол</a>
+                </div>
+            </div>
+        </section>
+        <section>
+             {% if user.is_superuser %}
+                <a href="{% url 'admin:index' %}">Superuser</a>
+                <a href="{% url 'planned_visits' %}">Инфо</a>
+            {% elif user.is_staff %}
+                <a href="{% url 'admin:index' %}">Staff</a>
+            {% elif perms.doctors.can_edit_profile %}
+                <a href="{% url 'doctor_profile' %}">Врач</a>
+                <a href="{% url 'doctor_schedule' %}">Расписание</a>
+                <a href="{% url 'doctor_order_list' %}">Записи</a>
+            {% elif user.is_authenticated %}
+                <a href="{% url 'patient_profile' %}">Пациент</a>
+                <a href="{% url 'patient_order_list' %}">Записи</a>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a>
+                <a href="{% url 'register' %}">Регистрация</a>
+            {% endif %}
+        </section>
+    </nav>
+
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <section class="time">
+                {% current_times as times %}
+                Local Time: {{ times.local_time}}<br>
+                UTC Time: {{ times.utc_time }}<br>
+                Time zone: {{ times.time_zone }}<br>
+            </section>
+            <section class="calendar">
+                {% date_range num=7 as range %}
+                {% for date in range %}
+                    <span>{{ date|date:"d.m.Y" }} {{ date|date:"l" }}</span><br>
+                {% endfor %}
+            </section>
+        </footer>
+    </div>
+</body>
+</html>

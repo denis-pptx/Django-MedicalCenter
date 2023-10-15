@@ -1,7 +1,67 @@
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
+{% load static %}
 
 {% block title %}КДС | Главная{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'website/css/home.css' %}">
+{% endblock %}
+
 {% block content %}
-    {{ content.formatted_markdown|safe }}
+    <h1>Главная</h1>
+    <hr>
+
+    <article class="introduction">
+        <a href="https://www.kdsmedical.by">
+            <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
+        </a>
+        <pre>
+            <code>
+def say_hello():
+    print('Привет, Медицинский центр КДС!')
+            </code>
+        </pre>
+        <div>
+            Добрый доктор <wbr>Айболит!<br>
+            Он под деревом <wbr>сидит.<br>
+            Приходи к нему <wbr>лечиться<br>
+            И корова, и волчица,<br>
+
+            И жучок, и червячок,<br>
+            И медведица!<br>
+            <br>
+            Всех излечит, исцелит<br>
+            Добрый доктор <wbr>Айболит!
+        </div>
+    </article>
+
+
+    {% if last_news %}
+        <article class="news-container">
+            <h2>{{ last_news.title }}</h2>
+            <div class="content">
+                {% if last_news.image %}
+                    <img src="{{ last_news.image.url }}" alt="News Image">
+                {% endif %}
+                <div class="summary">
+                    <mark>{{ last_news.publish_date|date:"d.m.Y" }} {{ last_news.publish_date|time:"H:i" }}</mark><br>
+                    {{ last_news.summary }}
+                    <i><a href="{% url 'news_details' last_news.pk %}">Читать далее...</a></i>
+                </div>
+            </div>
+        </article>
+    {% endif %}
+
+    <div class="our-partners">
+        <h3>Наши партнёры</h3>
+        <a href="https://minzdrav.gov.by/ru" title="Министерство здравоохранения Республики Беларусь" target="_blank">
+            <img class="partner-logo" src="{% static 'website/images/partners_logo/ministerstvo.png' %}">
+        </a>
+        <a href="https://pharma.by" title="РУП «Белфармация»">
+            <img class="partner-logo" src="{% static 'website/images/partners_logo/belfarmacia.png' %}" target="_blank">
+        </a>
+        <a href="https://www.lode.by" title="Медицинский центр «ЛОДЭ»">
+            <img class="partner-logo" src="{% static 'website/images/partners_logo/lode.png' %}" target="_blank">
+        </a>
+    </div>
 {% endblock %}

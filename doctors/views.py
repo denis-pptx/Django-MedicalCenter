@@ -11,6 +11,10 @@ from .forms import ProfileForm, DoctorScheduleForm
 from .models import DoctorProfile, DoctorSchedule
 
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 @permission_required('doctors.can_edit_profile')
 def profile(request):
     user = request.user
@@ -19,11 +23,14 @@ def profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
+            logger.info('Doctor profile is correct, saved')
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.save()
             form.save()
             return redirect('doctor_profile')
+
+        logger.warning('Doctor profile is incorrect')
     else:
         form = ProfileForm(instance=user_profile,
                            initial={'first_name': user.first_name,
@@ -33,6 +40,7 @@ def profile(request):
 
 
 def doctors(request):
+    logger.info('Doctors list displayed')
     return render(request, 'doctors/doctors_list.html')
 
 
@@ -43,6 +51,7 @@ def doctor_schedule(request):
                                              date__gte=date.today()
                                              ).order_by('date')
 
+    logger.info('Doctors schedule list displayed')
     return render(request, 'doctors/schedule.html', {'doctor_schedule': schedule,
                                                      'doctor': doctor})
 
@@ -53,10 +62,13 @@ def create_schedule(request):
         form = DoctorScheduleForm(request.POST)
         form.instance.doctor = request.user.doctorprofile
         if form.is_valid():
+            logger.info('Schedule is correct, saved')
             schedule = form.save(commit=False)
             schedule.doctor = request.user.doctorprofile
             schedule.save()
             return redirect(reverse('doctor_schedule'))
+
+        logger.warning('Schedule is incorrect')
     else:
         form = DoctorScheduleForm()
 
@@ -69,6 +81,7 @@ def update_schedule(request, pk):
 
     orders_on_schedule = Order.objects.filter(doctor_schedule=schedule)
     if orders_on_schedule.exists():
+        logger.info('Found patients for schedule')
         return render(request, 'doctors/cannot_modify_schedule.html',
                       {'schedule': schedule, 'orders': orders_on_schedule})
 
@@ -78,6 +91,7 @@ def update_schedule(request, pk):
     if request.method == 'POST':
         form = DoctorScheduleForm(request.POST, instance=schedule)
         if form.is_valid():
+            logger.info('Schedule is updated')
             form.save()
             return redirect('doctor_schedule')
     else:
@@ -92,13 +106,16 @@ def delete_schedule(request, pk):
 
     orders_on_schedule = Order.objects.filter(doctor_schedule=schedule)
     if orders_on_schedule.exists():
+        logger.info('Found patients for schedule')
         return render(request, 'doctors/cannot_modify_schedule.html',
                       {'schedule': schedule, 'orders': orders_on_schedule})
 
     if request.user.doctorprofile != schedule.doctor:
+        logger.warning('doctor != doctor')
         return redirect('doctor_schedule')
 
     if request.method == 'POST':
+        logger.info('Schedule is deleted')
         schedule.delete()
         return redirect('doctor_schedule')
 
@@ -140,8 +157,9 @@ def order_list(request):
         'status': status,
         'days': days,
     }
-    return render(request, 'doctors/order_list.html', context=context)
 
+    logger.info('Order list displayed')
+    return render(request, 'doctors/order_list.html', context=context)
 
 
 @require_POST
@@ -152,5 +170,6 @@ def complete_order(request, order_id):
     if order.status == 'pending':
         order.status = 'completed'
         order.save()
+        logger.info('Order is completed')
 
     return redirect('doctor_order_list')

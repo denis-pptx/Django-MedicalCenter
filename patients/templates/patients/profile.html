@@ -1,11 +1,8 @@
-{% extends "base.html" %}
+{% extends "patients/personal-area-generic.html" %}
 
-{% block title %}Edit Profile{% endblock %}
-
-{% block content %}
-    <h1>Edit Your Profile</h1>
+{% block tab %}
+    <h1>Профиль</h1>
     <hr>
-
     <form method="post" action="{% url 'patient_profile' %}">
         {% csrf_token %}
         <table>

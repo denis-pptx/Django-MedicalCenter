@@ -1,14 +1,18 @@
 from statistics import median
-
+import matplotlib.pyplot as plt
 from django.db.models import Q, Count, Sum
 from django.shortcuts import render
-
+import io
+import urllib, base64
 from doctors.models import DoctorProfile
 from orders.models import Order, PatientProfile
 from datetime import date
 from django.contrib.auth.decorators import user_passes_test
 
-from services.models import Service
+from services.models import Service, Category
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -56,6 +60,7 @@ def planned_visits(request):
                'patient_id': int(patient_id) if patient_id else None,
                'patients': patients}
 
+    logger.info('Displayed planned visits')
     return render(request, 'stats/planned_visits.html', context)
 
 
@@ -83,6 +88,7 @@ def cost_summary(request):
 
         summary = [(doctor, cost) for doctor, cost in doctor_costs.items()]
 
+    logger.info('Displayed cost summary')
     return render(request, 'stats/cost_summary.html', {
         'patients': patients,
         'patient_id': int(patient_id) if patient_id else None,
@@ -113,11 +119,13 @@ def doctor_appointments(request):
         'patients': patients,
     }
 
+    logger.info('Displayed doctor appointments')
     return render(request, 'stats/doctor_appointments.html', context=context)
 
 
 @user_passes_test(lambda user: user.is_superuser)
 def patients(request):
+    logger.info('Displayed patients')
     return render(request, 'stats/patients.html', context={
         'patients': PatientProfile.objects.order_by('user__first_name', 'user__last_name')
     })
@@ -136,6 +144,7 @@ def services_and_sales(request):
         'sales': sales,
     }
 
+    logger.info('Displayed services_and_sales')
     return render(request, 'stats/services_and_sales.html', context)
 
 
@@ -160,4 +169,34 @@ def statistics(request):
         'most_profitable_service': most_profitable_service
     }
 
+    logger.info('Displayed statistics')
     return render(request, 'stats/statistics.html', context)
+
+
+def generate_category_chart():
+    completed_orders = Order.objects.filter(status='completed')
+    categories = Category.objects.annotate(
+        total_earnings=Sum('subcategory__service__price',
+                           filter=Q(subcategory__service__order__in=completed_orders))
+    )
+
+    category_names = [category.name for category in categories]
+    earnings = [category.total_earnings or 0 for category in categories]
+
+    plt.figure()
+    plt.bar(category_names, earnings)
+    plt.xlabel('Категория')
+    plt.ylabel('Сумма заработанных денег')
+    plt.title('Диаграмма заработанных денег по категориям услуг')
+
+    with io.BytesIO() as buffer:
+        plt.savefig(buffer, format='png')
+        buffer.seek(0)
+        graphic = base64.b64encode(buffer.read()).decode('utf-8')
+
+    return graphic
+
+
+def category_chart(request):
+    graphic = generate_category_chart()
+    return render(request, 'stats/category_chart.html', {'graphic': graphic})

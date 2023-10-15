@@ -1,3 +1,36 @@
+* {
+    font-family: Arial;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+
+
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table th {
+    font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+
+.table td {
+	border: 1px solid #dddddd;
+	padding: 5px;
+}
+
+
+
+
+
 .nav-image {
     width: 40px;
     height: 40px;
@@ -6,4 +39,17 @@
 
 .nav-link {
     font-size: 130%;
+}
+
+
+
+
+footer {
+    margin: 25px 0 25px 0;
+    font-size: 0.9em;
+    display: flex;
+}
+
+footer .calendar {
+    margin-left: 20px;
 }

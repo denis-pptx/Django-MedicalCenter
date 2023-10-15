@@ -1,0 +1,18 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'patients/css/styles.css' %}">
+{% endblock %}
+
+{% block title %}КДС | Личный кабинет{% endblock %}
+
+{% block content %}
+    <div class="aside-tab-container">
+        <aside>
+            <a href="{% url 'patient_profile' %}">Профиль</a><br>
+            <a href="{% url 'create-feedback' %}">Добавить отзыв</a>
+        </aside>
+        <div class="tab">{% block tab %}{% endblock %}</div>
+    </div>
+{% endblock %}

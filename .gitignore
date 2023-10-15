@@ -1,3 +1,5 @@
 .idea/
 .venv/
 **/__pycache__/
+website/static/website/images/banner/banner.psd
+*.log

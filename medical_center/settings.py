@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'markdownx',
     'bootstrap5',
     'django_bootstrap5',
     'django_non_dark_admin',
@@ -42,10 +41,10 @@ INSTALLED_APPS = [
     'doctors.apps.DoctorsConfig',
     'services.apps.ServicesConfig',
     'website.apps.WebsiteConfig',
-    'contacts.apps.ContactsConfig',
     'patients.apps.PatientsConfig',
     'orders.apps.OrdersConfig',
     'stats.apps.StatsConfig',
+    'news.apps.NewsConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +140,27 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',  # (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+    },
+}
+

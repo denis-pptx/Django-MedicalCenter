@@ -1,0 +1,32 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}КДС | Новости{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'news/css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>Новости</h1>
+        <hr>
+        {% for item in news %}
+            <section class="news-container">
+                <h2>{{ item.title }}</h2>
+                <div class="content">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="News Image">
+                    {% endif %}
+                    <div class="summary">
+                        <mark>{{ item.publish_date|date:"d.m.Y" }} {{ item.publish_date|time:"H:i" }}</mark><br>
+                        {{ item.summary }}
+                        <i><a href="{% url 'news_details' item.pk %}">Читать далее...</a></i>
+                    </div>
+                </div>
+            </section>
+        {% empty %}
+            <h1>Список новостей пуст</h1>
+        {% endfor %}
+    </article>
+{% endblock %}

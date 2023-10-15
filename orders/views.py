@@ -4,6 +4,9 @@ from datetime import datetime
 from .models import Service, Order
 from doctors.models import DoctorProfile, DoctorSchedule
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 def select_doctor(request, service_id):
     service = Service.objects.get(id=service_id)
@@ -12,6 +15,7 @@ def select_doctor(request, service_id):
         'service': service,
         'doctors': doctors,
     }
+    logging.info('Displayed doctor selection page')
     return render(request, 'orders/select_doctor.html', context)
 
 
@@ -27,6 +31,7 @@ def select_doctor_date(request):
             'schedules': schedules
         }
 
+        logging.info('Displayed doctor date selection page')
         return render(request, 'orders/select_doctor_date.html', context)
 
 
@@ -46,5 +51,6 @@ def create_order(request):
             'schedule': schedule
         }
 
+        logging.info('Order is created')
         return render(request, 'orders/order_success.html', context=context)
 

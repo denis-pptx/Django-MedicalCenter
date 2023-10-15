@@ -1,0 +1,9 @@
+{% extends 'stats/base_content.html' %}
+
+{% block title %}Диаграмма{% endblock %}
+
+{% block page_content %}
+    <h1>Столбчатая диаграмма</h1>
+    <hr>
+    <img src="data:image/png;base64,{{ graphic }}" alt="Диаграмма">
+{% endblock %}

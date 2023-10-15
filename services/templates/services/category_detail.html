@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
 {% load doctors_tag %}s
 {% load static %}
 
 {% block title %}{{ category.name }}{% endblock %}
 
-{% block head %}
+{% block styles %}
     <link rel="stylesheet" href="{% static 'services/css/styles.css' %}">
 {% endblock %}
 
@@ -33,9 +33,11 @@
                                 <tr>
                                     <td>{{ service.name }}</td>
                                     <td>${{ service.price }}</td>
+                                    {% if user.is_authenticated %}
                                     <td>
                                         <a href="{% url 'select_doctor' service.id %}" class="btn btn-outline-secondary">Записаться</a>
                                     </td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
+{% load tz %}
 
 {% block title%}Расписание врача{% endblock %}
 
@@ -13,6 +14,8 @@
                 <th>День недели</th>
                 <th>Время работы</th>
                 <th>Управление</th>
+                <th>Добавлено</th>
+                <th>Изменено</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +28,8 @@
                     <a href="{% url 'update_schedule' schedule.id %}">Изменить</a> |
                     <a href="{% url 'delete_schedule' schedule.id %}">Удалить</a>
                 </td>
+                <td>{{ schedule.created_at|date:"d/m/y H:i:s e" }}<br>{{ schedule.created_at|timezone:"UTC"|date:"d/m/y H:i:s e" }}</td>
+                <td>{{ schedule.updated_at|date:"d/m/y H:i:s e" }}<br>{{ schedule.updated_at|timezone:"UTC"|date:"d/m/y H:i:s e" }}</td>
             </tr>
             {% endfor %}
         </tbody>
