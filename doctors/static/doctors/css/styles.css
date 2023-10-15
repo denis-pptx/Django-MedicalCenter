@@ -1,17 +1,22 @@
 .doctor-card {
     display: flex;
-    margin-bottom: 20px;
     background-color: WhiteSmoke;
     border-radius: 10px;
+    transition: 0.5s;
+    border: 1px solid gray;
 }
 
+.doctor-card:hover {
+    transform: scale(1.1);
+}
 .doctor-card .about {
-    margin-left: 10px;
+    margin: 10px;
 }
 
 .doctor-card .image {
     width: 30%;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
+    object-fit: cover;
 }
 
 .doctor-card .about .name {
@@ -27,4 +32,10 @@
 
 .doctor-card .about .property {
     color: #454545;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px;
 }
