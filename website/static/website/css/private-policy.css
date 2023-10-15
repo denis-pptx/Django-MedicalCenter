@@ -10,3 +10,27 @@ iframe {
 p:first-of-type::first-line {
     background-color: coral;
 }
+
+p:first-of-type + p {
+    background-color: pink;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 20px 30px 40px;
+    text-indent: 2%;
+    line-height: 2em;
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: end;
+    font-family: Calibri;
+
+    position: relative;
+    left: 60px;
+    top: 20px;
+}
+
+h1 {
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
