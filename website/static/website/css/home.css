@@ -1,6 +1,7 @@
 .banner {
     width: 100%;
     padding-bottom: 10px;
+    animation: moveAndRotate 4s linear infinite;
 }
 
 .news-container {
@@ -37,3 +38,15 @@
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
 }
+
+@keyframes moveAndRotate {
+    0% {
+      transform: translate(-1%, -2%) rotate(-1deg);
+    }
+    50% {
+      transform: translate(1%, 2%) rotate(1deg);
+    }
+    100% {
+        transform: translate(-1%, -2%) rotate(-1deg);
+    }
+  }
