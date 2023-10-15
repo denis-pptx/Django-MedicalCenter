@@ -93,3 +93,12 @@ input:disabled {
     opacity: 0.7; 
     border: 2px dashed black;
 }
+
+
+q:lang(en) {    
+    quotes: "\201C" "\201D";   
+}   
+
+q:lang(fr) { 
+    quotes: "\00AB" "\00BB";   
+}
