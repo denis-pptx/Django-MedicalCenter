@@ -107,3 +107,7 @@ q:lang(fr) {
 ::selection {
     background-color: lightpink;
 }
+
+input[type="submit"], button {
+    cursor: pointer; 
+}
