@@ -18,3 +18,17 @@
     width: 50%;
     text-align: center;
 }
+
+
+li:first-child {
+    list-style-type: "\1F44D";
+}
+
+li:last-child {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+li:nth-of-type(even) {
+    color: green;
+}

@@ -1,0 +1,10 @@
+tbody tr td:first-child {
+    background-color:gold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: gray;
+}
+thead tr th:nth-child(even) {
+    color: red;
+}
