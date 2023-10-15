@@ -9,3 +9,11 @@
 .archive {
     color: gray;
 }
+
+h3::before, h3::after {
+    content: "   \1F525   ";
+}
+
+.available li {
+    list-style-type: "\26A1  ";
+}
