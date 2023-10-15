@@ -53,3 +53,25 @@ footer {
 footer .calendar {
     margin-left: 20px;
 }
+
+
+
+a:link {
+    color: DarkBlue;
+}
+
+a:visited {
+    color: DarkMagenta;
+}
+
+a:hover {
+    color: LimeGreen;
+}
+
+a:active {
+    color: Crimson;
+}
+
+:focus {
+    outline: 2px solid OrangeRed;
+}
