@@ -32,3 +32,8 @@
     text-decoration: none;
 }
 
+.name {
+    font-kerning: normal;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
