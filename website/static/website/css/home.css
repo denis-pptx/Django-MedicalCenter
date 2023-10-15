@@ -24,8 +24,11 @@
 .partner-logo {
     width: 100px;
     margin: 5px;
+    border-radius: 50%;
+    box-shadow: 10px 10px 20px 0px red;
 }
 
 .our-partners a {
     text-decoration: none;
 }
+
