@@ -29,8 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap5',
-    'django_bootstrap5',
     'django_non_dark_admin',
     'django.contrib.admin',
     'django.contrib.auth',
