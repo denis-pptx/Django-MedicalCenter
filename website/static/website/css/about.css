@@ -64,3 +64,6 @@ li:nth-of-type(even) {
    font-family: 'Courier New', Courier, monospace;
 }
 
+#requisites, #information, #history {
+    padding: 10px 30px;
+}

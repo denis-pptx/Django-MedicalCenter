@@ -10,9 +10,10 @@
 {% block content %}
     <h1>{{ news.title }}</h1>
     <hr>
-    {{ news.publish_date }}
-    <img src="{{ news.image.url }}">
-    <p>
-        {{ news.text }}
-    </p>
+    <div class="news-container">
+        <!-- {{ news.publish_date }} -->
+        <img src="{{ news.image.url }}">
+        <p>{{ news.text }}</p>
+    </div>
+
 {% endblock %}

@@ -131,7 +131,6 @@ body {
 .common-block {
     background-image: radial-gradient(rgb(255, 180, 218, 0.5) 40%, rgb(135, 227, 255, 0.5));
     border-radius: 20px;
-    padding: 10px 30px;
     box-shadow: 0 0 20px rgb(136, 217, 255, 0.5);
     margin: 20px 0px;
 }
