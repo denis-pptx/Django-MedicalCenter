@@ -18,6 +18,15 @@ body {
 .table {
 	width: 100%;
 	border-collapse: collapse;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+.custom-table caption {
+    font-weight: bold;
+    text-align: center;
+    caption-side: top;
 }
 
 .table th {
@@ -32,6 +41,13 @@ body {
 	padding: 5px;
 }
 
+.table tbody tr:nth-child(even) {
+    background-color: gainsboro;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: aliceblue;
+}
 
 
 
