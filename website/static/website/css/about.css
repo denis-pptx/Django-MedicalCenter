@@ -15,9 +15,13 @@
     transform: skewY(20deg) rotate(10turn) scale(1.5);
 }
 
-.promo-video video {
+.promo video {
     width: 50%;
     margin: 10px 0 20px 0;
+}
+
+.promo video, .promo audio {
+    border: 5px double violet;
 }
 
 .certificate {
@@ -55,3 +59,8 @@ li:last-child {
 li:nth-of-type(even) {
     color: green;
 }
+
+#requisites li {
+   font-family: 'Courier New', Courier, monospace;
+}
+
