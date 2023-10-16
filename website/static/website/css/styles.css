@@ -134,3 +134,7 @@ body {
     box-shadow: 0 0 20px rgb(136, 217, 255, 0.5);
     margin: 20px 0px;
 }
+
+article[class="common-block"] {
+    padding: 5px 20px;
+}
