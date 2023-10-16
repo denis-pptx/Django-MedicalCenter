@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Libre+Baskerville:ital@1&display=swap');
+
 .aside-tab-container {
     display: flex;
     justify-content: flex-start;
@@ -14,4 +16,20 @@
 
 input:out-of-range {
     background-color: rgb(255, 0, 140);
+}
+
+input[type="number"] {
+    font-family: 'Libre Baskerville', serif;
+    scale: 1.1;
+    margin: 10px;
+}
+
+input[type="submit"] {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    font-size: 1.5em;
+}
+
+textarea {
+    font-family: monospace;
 }
