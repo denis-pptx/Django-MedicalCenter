@@ -4,9 +4,6 @@
     animation: moveAndRotate 4s linear infinite;
 }
 
-.news-container {
-    margin: 0 0 15px 0;
-}
 .news-container img {
     width: 40%;
     margin-right: 10px;
@@ -15,7 +12,6 @@
 .news-container .content {
     display: flex;
     align-items: flex-start;
-    width: 70%;
 }
 
 .news-container .content .summary {
@@ -50,3 +46,11 @@
         transform: translate(-1%, -2%) rotate(-1deg);
     }
   }
+
+
+.news-container {
+    position: relative;
+    left: 200px;
+    top: 40px;
+    width: 70%;
+}
