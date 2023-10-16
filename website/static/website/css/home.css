@@ -57,3 +57,16 @@
     top: 40px;
     width: 70%;
 }
+
+.introduction > div {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+article[class^="introductio"] div {
+    text-decoration: underline;
+}
+
+article[class$="ntroduction"] div {
+    text-decoration: th;
+    font-weight: bold;
+}
