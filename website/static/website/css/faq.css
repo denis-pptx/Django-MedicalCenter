@@ -16,3 +16,14 @@ dfn {
     font-family: 'Pixelify Sans', "Times New Roman", serif;
     font-style: normal;
 }
+
+summary + p {
+    border: 2px dashed gray;
+    border-radius: 10px;
+    background-color: rgb(255, 225, 186);
+    padding: 10px;
+}
+
+mark {
+    background-color: violet;
+}
