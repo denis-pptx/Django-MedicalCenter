@@ -67,6 +67,5 @@ article[class^="introductio"] div {
 }
 
 article[class$="ntroduction"] div {
-    text-decoration: th;
     font-weight: bold;
 }

@@ -41,6 +41,10 @@ body {
 	padding: 5px;
 }
 
+.table td:empty {
+  background-image: radial-gradient(red, green);
+}
+
 .table tbody tr:nth-child(even) {
     background-color: gainsboro;
 }
