@@ -5,8 +5,15 @@ let intervalId;
 let bannerContainer = document.querySelector('.banner-container');
 let banners = bannerContainer.querySelectorAll('.banner');
 
+rotateBanner();
+startRotation();
+
+window.addEventListener('focus', startRotation);
+window.addEventListener('blur', stopRotation);
+
 function rotateBanner() {
     for (let i = 0; i < banners.length; i++) {
+
         if (i === currentBanner) {
             banners[i].hidden = false; // Показать 
         } else {
@@ -29,6 +36,3 @@ function stopRotation() {
 }
 
 
-startRotation();
-window.addEventListener('focus', startRotation);
-window.addEventListener('blur', stopRotation);
