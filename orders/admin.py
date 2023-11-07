@@ -32,7 +32,7 @@ class DateFilter(admin.SimpleListFilter):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('patient', 'service', 'service_price', 'doctor_schedule_date', 'doctor_name', 'status')
+    list_display = ('patient', 'service', 'service_price', 'promo_code', 'doctor_schedule_date', 'doctor_name', 'status')
     list_filter = ('status', 'service__subcategory__category', DateFilter)
     search_fields = ('patient__user__first_name', 'patient__user__last_name')
     ordering = ('doctor_schedule__date',)
