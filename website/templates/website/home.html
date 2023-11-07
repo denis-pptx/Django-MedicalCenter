@@ -14,13 +14,14 @@
 
     <div class="banner-container" data-interval="{{ interval }}">
         {% for banner in banners %}
-          <div class="banner">
-            <a href="{{ banner.link }}" target="_blank">
-                <img class="banner-image" src="{{ banner.image.url }}" alt="{{ banner.title }}">
-            </a>
-          </div>
+            <div class="banner" {% if not forloop.first %}hidden{% endif %}>
+                <a href="{{ banner.link }}" target="_blank">
+                    <img class="banner-image" src="{{ banner.image.url }}" alt="{{ banner.title }}">
+                </a>
+            </div>
         {% endfor %}
-      </div>
+    </div>
+    
 
     <article class="introduction">  
         <pre>

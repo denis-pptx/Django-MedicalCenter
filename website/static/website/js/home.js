@@ -1,15 +1,16 @@
-var currentBanner = 0;
-var interval = document.querySelector('.banner-container').dataset.interval || 5000;
+let currentBanner = 0;
+let interval = document.querySelector('.banner-container').dataset.interval || 5000;
+let intervalId;
+
+let bannerContainer = document.querySelector('.banner-container');
+let banners = bannerContainer.querySelectorAll('.banner');
 
 function rotateBanner() {
-    var bannerContainer = document.querySelector('.banner-container');
-    var banners = bannerContainer.querySelectorAll('.banner');
-
-    for (var i = 0; i < banners.length; i++) {
+    for (let i = 0; i < banners.length; i++) {
         if (i === currentBanner) {
-            banners[i].hidden = false; // Показать текущий баннер
+            banners[i].hidden = false; // Показать 
         } else {
-            banners[i].hidden = true; // Скрыть остальные
+            banners[i].hidden = true; // Скрыть 
         }
     }
 
@@ -19,5 +20,15 @@ function rotateBanner() {
     }
 }
 
-rotateBanner();
-setInterval(rotateBanner, interval);
+function startRotation() {
+    intervalId = setInterval(rotateBanner, interval);
+}
+
+function stopRotation() {
+    clearInterval(intervalId);
+}
+
+
+startRotation();
+window.addEventListener('focus', startRotation);
+window.addEventListener('blur', stopRotation);
