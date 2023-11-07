@@ -12,3 +12,12 @@ input[type="radio"]:checked, input[type="checkbox"]:checked {
 input[type="submit"] {
     cursor: crosshair;
 }
+
+.form-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.form-container .info {
+    margin-left: 40px;
+}
