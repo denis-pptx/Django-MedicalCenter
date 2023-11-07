@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Tilt+Neon&family=Young+Serif&display=swap');
+
 .banner-image {
     width: 100%;
     animation: moveAndRotate 4s linear infinite;
@@ -71,4 +73,18 @@ article[class^="introductio"] div {
 
 article[class$="ntroduction"] div {
     font-weight: bold;
+}
+
+
+.countdown-container {
+    text-align: center;
+    font-family: 'Agbalumo', serif;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 5em;
+}
+
+.countdown-text, .countdown-timer {
+    font-family: inherit;
+    display: inline-block;
 }
