@@ -50,6 +50,9 @@ def create_order(request):
             promo_code=promo_code
         )
 
+        if promo_code:
+            service.price = round(service.price * (1 - promo_code.discount / 100), 2)
+            
         context = {
             'service': service,
             'schedule': schedule
