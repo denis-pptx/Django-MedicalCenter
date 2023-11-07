@@ -14,7 +14,7 @@
     </div>
     <hr>
 
-    <article>
+    <article id="information" class="common-block">
         <h3>Информация о компании</h3>
         <p>
             <strong><abbr title="Кончик Денис Сергеевич">"КДС"</abbr></strong> - это <em>современный медицинский центр</em>,
@@ -38,13 +38,15 @@
         <p>
             <blockquote>
                 Наша <em>миссия</em> - помогать нашим пациентам <strong>возвращаться к здоровью</strong> и обеспечивать
-                им высокий уровень <em>медицинской заботы</em>.
+                им высокий уровень <em>медицинской заботы</em>. 
+                <br><q lang="en">Enjoy every moment.</q>
+                <br><q lang="fr">A la guerre comme à la guerre.</q>
                 <footer>— Кончик Денис, <cite>основатель медицинского центра</cite></footer>
             </blockquote>
         </p>
     </article>
 
-    <article id="history">
+    <article id="history" class="common-block">
         <h3>История</h3>
         <p>
             <strong>"КДС"</strong> был основан в <time datetime="1995-07-15">1995 году</time> в Минске группой
@@ -64,7 +66,7 @@
         </p>
     </article>
 
-    <article id="requisites">
+    <article id="requisites" class="common-block">
         <h3>Реквизиты</h3>
 
         <ul type="disc">
@@ -78,8 +80,8 @@
         </ul>
     </article>
 
-    <div class="promo-video">
-        <h3>Промо-ролик</h3>
+    <div class="promo common-block">
+        <h3>Промо</h3>
         <video src="{% static 'website/video/promo.mp4' %}" loop controls muted autoplay>Video cannot be displayed</video><br>
         <audio controls muted>
             <source src="{% static 'website/audio/gimn.mp3'%}"/>
@@ -93,7 +95,7 @@
         <div class="certificate">
             <h4>Единый реестр медцентров</h4>
             <h4>Свидетельство</h4>
-            <h5>ООО "КДС"</h5>
+            <h3>ООО "КДС"</h3>
             <h5><u>Регистрационный номер: 12345678</u></h5>
             <h6>г. Минск, 11 сентября 2012</h6>
         </div>

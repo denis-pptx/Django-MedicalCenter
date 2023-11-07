@@ -1,7 +1,22 @@
 .feedback {
     margin-bottom: 1.5em;
+    float: left;
+    max-width: 400px;
+
+    margin: 10px;
+    padding: 10px;
+    border: 1px dashed gray;
 }
 
 .feedback .text {
     word-wrap: break-word;
+}
+
+.feedback mark {
+    background-color: rgb(177, 143, 221, 0.4);
+    text-decoration:  underline dotted;
+}
+
+footer {
+    clear: left;
 }

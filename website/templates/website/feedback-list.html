@@ -13,9 +13,10 @@
     <hr>
     <a href="{% url 'create-feedback' %}">Добавить отзыв</a><br><br>
 
+  <div>
     {% for feedback in feedbacks %}
-        <div class="feedback">
-            <mark>{{ feedback.date|date:"d/m/y H:i:s e" }}</mark> ({{ feedback.date|timezone:"UTC"|date:"d/m/y H:i:s e" }})<br>
+        <div class="feedback common-block">
+            <mark>{{ feedback.date|date:"d/m/y H:i:s e" }}</mark> <!-- ({{ feedback.date|timezone:"UTC"|date:"d/m/y H:i:s e" }}) --><br>
             Пациент: <i>{{ feedback.user.user.get_full_name}}</i><br>
             Оценка: <i>{{ feedback.rating }} / 5</i><br>
             Текст: <i class="text">{{ feedback.text }}</i>
@@ -23,4 +24,5 @@
     {% empty %}
         <h3>Список отзывов пуст</h3>
     {% endfor %}
+</div>
 {% endblock %}

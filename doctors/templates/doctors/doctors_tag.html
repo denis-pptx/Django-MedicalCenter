@@ -1,44 +1,45 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'doctors/css/styles.css' %}">
 
-{% for profile in profiles %}
-    <div class="doctor-card">
+<div class="flex-container">
+    {% for profile in profiles %}
+        <div class="doctor-card">
 
-        {% if profile.photo %}
+            {% if profile.photo %}
             <img class="image" src="{{ profile.photo.url }}" alt="Profile Photo">
-        {% endif %}
-
-        <div itemscope itemtype="https://schema.org/Person" class="about">
-            <span class="name">{{ profile.user.get_full_name }}</span>
-
-            {% if profile.specializations.all %}
-                <div class="specializations" itemprop="specializations">{{ profile.specializations.all|join:", " }}</div>
             {% endif %}
 
-            {% if profile.experience %}
-                <div class="property" itemprop="experience">Опыт работы: <i>from {{ profile.experience }}</i></div>
-            {% endif %}
+            <div itemscope itemtype="https://schema.org/Person" class="about">
+                <span class="name">{{ profile.user.get_full_name }}</span>
 
-            {% if profile.category %}
-                <div class="property" itemprop="category">Категория: <i>{{ profile.category.name }}</i></div>
-            {% endif %}
+                {% if profile.specializations.all %}
+                    <div class="specializations" itemprop="specializations">{{ profile.specializations.all|join:", " }}</div>
+                {% endif %}
 
-            {% if profile.academic_degree %}
-                <div class="property" itemprop="academic-degree">Научная степень: <i>{{ profile.academic_degree.name }}</i></div>
-            {% endif %}
+                {% if profile.experience %}
+                    <div class="property" itemprop="experience">Опыт работы: <i>from {{ profile.experience }}</i></div>
+                {% endif %}
 
-            {% if profile.types.all %}
-                <div class="property" itemprop="type">Тип: <i>{{ profile.types.all|join:", " }}</i></div>
-            {% endif %}
+                {% if profile.category %}
+                    <div class="property" itemprop="category">Категория: <i>{{ profile.category.name }}</i></div>
+                {% endif %}
 
-            {% if profile.phone_number %}
-                <div class="property" itemprop="phone">Телефон: <i><a href="tel:{{ profile.phone_number }}">{{ profile.phone_number }}</a></i></div>
-            {% endif %}
+                {% if profile.academic_degree %}
+                    <div class="property" itemprop="academic-degree">Научная степень: <i>{{ profile.academic_degree.name }}</i></div>
+                {% endif %}
 
-            {% if profile.email %}
-                <div class="property" itemprop="email">Почта: <i><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></i></div>
-            {% endif %}
+                {% if profile.types.all %}
+                    <div class="property" itemprop="type">Тип: <i>{{ profile.types.all|join:", " }}</i></div>
+                {% endif %}
+
+                {% if profile.phone_number %}
+                    <div class="property" itemprop="phone">Телефон: <i><a href="tel:{{ profile.phone_number }}">{{profile.phone_number }}</a></i></div>
+                {% endif %}
+
+                {% if profile.email %}
+                    <div class="property" itemprop="email">Почта: <i><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></i></div>
+                {% endif %}
+            </div>
         </div>
-    </div>
-
-{% endfor %}
+    {% endfor %}
+</div>

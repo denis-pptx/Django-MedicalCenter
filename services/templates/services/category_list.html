@@ -8,26 +8,26 @@
 {% block title %}Направления{% endblock %}
 
 {% block content %}
-    <h2>Направления</h2>
+    <h1>Направления</h1>
     <hr/>
-    <div class="row">
+
+    <div class="grid-container">
         {% for category in category_list %}
-            <div class="col-md-4 mb-4 h-100">
+            <div class="card">
                 <a href="{% url 'category_detail' slug=category.slug %}">
-                    <div class="card card-hover">
-                        <div class="card-img-top-container">
-                            {% if category.image %}
-                                <img src="{{ category.image.url }}" alt="Category photo" class="card-img-top">
-                            {% else %}
-                                <img src="https://via.placeholder.com/500x500?text=No+Image" alt="No Image">
-                            {% endif %}
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ category.name }}</h5>
-                        </div>
+                    <div class="card-img">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="Category photo" class="card-img-top">
+                        {% else %}
+                            <img src="https://via.placeholder.com/500x500?text=No+Image" alt="No Image">
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <span class="card-title">{{ category.name }}</span>
                     </div>
                 </a>
             </div>
         {% endfor %}
     </div>
+    
 {% endblock %}

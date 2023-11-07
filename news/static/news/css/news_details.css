@@ -1,9 +1,10 @@
-.image-paragraph-container {
-    display: flex;
-    align-items: flex-start;
+.news-container {
+    column-count: 3;
+    column-gap: 20px;
+    text-align: justify;
 }
 
-.image-paragraph-container img {
-    width: 30%;
-    margin: 0 10px 10px 0;
+
+.news-container img {
+    width: 100%;
 }

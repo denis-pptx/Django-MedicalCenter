@@ -9,44 +9,40 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="mb-3">{{ category.name }}</h1>
+    <h1>{{ category.name }}</h1>
+    <hr>
+
     {% if category.image %}
         <div class="image-container">
             <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-image">
         </div>
     {% endif %}
-    <p class="mt-2">{{ category.description }}</p>
+
+    <p>{{ category.description }}</p>
 
     {% for subcategory in subcategories %}
-        <h2>
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapse-{{ subcategory.id }}" aria-expanded="false">
-                {{ subcategory.name }}
-            </button>
-        </h2>
-        <div class="collapse mb-2 col-6" id="collapse-{{ subcategory.id }}">
-            <div class="card card-body">
-                {% if subcategory.service_set.all %}
-                    <table class="table">
-                        <tbody>
-                            {% for service in subcategory.service_set.all %}
-                                <tr>
-                                    <td>{{ service.name }}</td>
-                                    <td>${{ service.price }}</td>
-                                    {% if user.is_authenticated %}
-                                    <td>
-                                        <a href="{% url 'select_doctor' service.id %}" class="btn btn-outline-secondary">Записаться</a>
-                                    </td>
-                                    {% endif %}
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+        <details>
+            <summary>{{ subcategory.name }}</summary>
+            {% if subcategory.service_set.all %}
+                <table class="table">
+                    <tbody>
+                        {% for service in subcategory.service_set.all %}
+                            <tr>
+                                <td>{{ service.name }}</td>
+                                <td>${{ service.price }}</td>
+                                {% if user.is_authenticated %}
+                                <td>
+                                    <a href="{% url 'select_doctor' service.id %}" class="btn btn-outline-secondary">Записаться</a>
+                                </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 {% else %}
                     <span>Нет услуг в данной категории</span>
                 {% endif %}
-            </div>
-        </div>
+        </details>
     {% endfor %}
 
     <hr />
