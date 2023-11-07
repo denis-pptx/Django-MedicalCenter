@@ -19,4 +19,10 @@ class Order(models.Model):
         default='pending'
     )
 
+    def discounted_price(self):
+        if self.promo_code:
+            discount = self.promo_code.discount
+            return round(self.service.price * (1 - discount / 100), 2)
+        return self.service.price
+
 

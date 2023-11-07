@@ -6,7 +6,7 @@ const promoCodeInputHidden = document.getElementsByName('promo_code')[0];
 
 applyPromoCodeButton.addEventListener('click', function (event) {
     event.preventDefault();
-    const promoCodeValue = promoCodeInput.value;
+    const promoCodeValue = promoCodeInput.value.trim();
 
     fetch('http://127.0.0.1:8000/services/check-promo-code/', {
         method: 'POST',
@@ -21,7 +21,7 @@ applyPromoCodeButton.addEventListener('click', function (event) {
     .then(response => response.json())
     .then(data => {
         if (data.valid) {
-            promoCodeInfo.textContent = `Промокод "${promoCodeValue}" действителен. Скидка: ${data.discount}%. Новая цена: ${data.new_price}`;
+            promoCodeInfo.textContent = `Промокод "${promoCodeValue}" действителен. Скидка: ${data.discount}%. Новая цена: $${data.new_price}`;
             promoCodeInputHidden.value = promoCodeValue;
         } else {
             promoCodeInfo.textContent = data.message;
