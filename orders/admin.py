@@ -32,7 +32,7 @@ class DateFilter(admin.SimpleListFilter):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('patient', 'service', 'service_price', 'promo_code', 'doctor_schedule_date', 'doctor_name', 'status')
+    list_display = ('patient', 'service', 'service_price', 'discount', 'total_price', 'doctor_schedule_date', 'doctor_name', 'status')
     list_filter = ('status', 'service__subcategory__category', DateFilter)
     search_fields = ('patient__user__first_name', 'patient__user__last_name')
     ordering = ('doctor_schedule__date',)
@@ -45,6 +45,18 @@ class OrderAdmin(admin.ModelAdmin):
 
     def service_price(self, obj):
         return obj.service.price
+
+    def discount(self, obj):
+        if not obj.promo_code:
+            return None
+        else:
+            return obj.promo_code.discount
+
+    def total_price(self, obj):
+        if not obj.promo_code:
+            return obj.service.price
+
+        return round(obj.service.price * (1 - obj.promo_code.discount / 100), 2)
 
     doctor_schedule_date.short_description = 'Date'
     doctor_name.short_description = 'Doctor Name'

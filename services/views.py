@@ -48,7 +48,7 @@ def check_promo_code(request):
 
         if promo_code_obj:
             original_price = Service.objects.get(id=service_id).price
-            new_price = original_price * (1 - promo_code_obj.discount / 100)
+            new_price = round(original_price * (1 - promo_code_obj.discount / 100), 2)
 
             data = {
                 'valid': True,
