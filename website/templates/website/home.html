@@ -11,10 +11,18 @@
     <h1>Главная <span class="name">КДС</span></h1>
     <hr>
 
-    <article class="introduction">
-        <a href="https://www.kdsmedical.by">
-            <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
-        </a>
+
+    <div class="banner-container" data-interval="{{ interval }}">
+        {% for banner in banners %}
+          <div class="banner">
+            <a href="{{ banner.link }}" target="_blank">
+                <img class="banner-image" src="{{ banner.image.url }}" alt="{{ banner.title }}">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+    <article class="introduction">  
         <pre>
             <code>
 def say_hello():
@@ -64,4 +72,10 @@ def say_hello():
             <img class="partner-logo" src="{% static 'website/images/partners_logo/lode.png' %}" target="_blank">
         </a>
     </div>
+    
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'website/js/home.js' %}"></script>
 {% endblock %}
