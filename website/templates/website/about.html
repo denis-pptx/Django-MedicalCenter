@@ -5,9 +5,18 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'website/css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/scroll.css' %}">
 {% endblock %}
 
 {% block content %}
+    <section id="scroll-container" class="common-block">
+        <img src="{% static 'website/images/scroll/medical-center.jpg' %}" id="bg" />
+        <h1 id="text">КДС</h1>
+        <img src="{% static 'website/images/scroll/left-doctor.png' %}" id="left-doctor" />
+        <img src="{% static 'website/images/scroll/right-doctor.png' %}" id="right-doctor" />
+    </section>
+
+  
     <div class="header-container">
         <h1>О нас</h1>
         <img src="{% static 'website/images/logo/logo.png' %}" alt="logo">
@@ -101,4 +110,8 @@
         </div>
     </section>
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'website/js/scroll.js' %}"></script>
 {% endblock %}

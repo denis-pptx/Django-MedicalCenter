@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+#scroll-container {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+    border-radius: 20px;
+
+    pointer-events: none; 
+    user-select: none;
+}
+
+#left-doctor {
+    position: absolute;
+
+    height: 570px;
+    left: 40px;
+    bottom: 0;
+}  
+
+#right-doctor {
+    position: absolute;
+
+    height: 650px;
+    right: 10px;
+    bottom: -60px;
+}
+
+#bg {
+    width: 100%;
+    object-fit: cover;
+}
+
+#text {
+    position: absolute;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    font-size: 17em;
+    font-family: 'Montserrat', sans-serif;
+}
+
