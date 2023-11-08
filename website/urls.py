@@ -9,6 +9,7 @@ urlpatterns = [
     re_path(r'^faq/$', TemplateView.as_view(template_name="website/faq.html"), name='faq'),
     path('private-policy/', TemplateView.as_view(template_name="website/private-policy.html"), name='private-policy'),
     path('vacancies/', TemplateView.as_view(template_name="website/vacancies.html"), name='vacancies'),
+    path('task/', TemplateView.as_view(template_name="website/task.html"), name='task'),
     path('feedback-list', feedback_list, name='feedback-list'),
     path('weather/', get_weather, name='weather'),
     path('gender/', get_gender, name='gender'),
