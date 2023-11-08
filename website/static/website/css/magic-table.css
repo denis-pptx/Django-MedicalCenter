@@ -1,0 +1,16 @@
+#magic-table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#magic-table td {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid black;
+    padding: 5px;
+}
+

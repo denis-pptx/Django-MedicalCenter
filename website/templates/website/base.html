@@ -45,6 +45,12 @@
                     <a href="{% url 'gender' %}">Пол</a>
                 </div>
             </div>
+            <div class="dropdown">
+                <button class="dropbtn">JS</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'magic-table' %}">Таблица [9]</a>
+                </div>
+            </div>
         </section>
         <section>
              {% if user.is_superuser %}

@@ -12,6 +12,7 @@ urlpatterns = [
     path('feedback-list', feedback_list, name='feedback-list'),
     path('weather/', get_weather, name='weather'),
     path('gender/', get_gender, name='gender'),
+    path('table/', TemplateView.as_view(template_name="website/magic-table.html"), name='magic-table'),
 ]
 
 
