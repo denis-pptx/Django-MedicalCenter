@@ -2,6 +2,7 @@
     border-collapse: collapse;
     border: 2px solid black;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 #magic-table td {
@@ -15,5 +16,8 @@
 
 #transpose {
     display: block;
-    margin: 10px 10px 10px 0;
+}
+
+button {
+    margin: 5px 5px 5px 0;
 }
