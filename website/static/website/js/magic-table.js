@@ -12,7 +12,7 @@ const createButton = document.getElementById('create');
 const transposeButton = document.getElementById('transpose');
 const addRowButton = document.getElementById('addRow');
 const addColumnButton = document.getElementById('addColumn');
-
+const maxSelectionInput = document.getElementById('maxSelection'); 
 
 function createTable() {
     let size = sizeInput.value;
@@ -111,6 +111,32 @@ function hasSelectedNeighbor(cell) {
     return false; 
 }
 
+function isMaxSelectionReached(cell) {
+    const row = cell.parentElement.rowIndex;
+    const col = cell.cellIndex;
+    const maxSelection = parseInt(maxSelectionInput.value);
+
+    // Проверка в строке
+    let selectedInRow = 0;
+    for (let i = 0; i < table.rows[row].cells.length; i++) 
+        if (table.rows[row].cells[i].getAttribute('selected') == 'true') 
+            selectedInRow++;
+        
+    if (selectedInRow >= maxSelection) 
+        return true;
+    
+
+    // Проверка в столбце
+    let selectedInColumn = 0;
+    for (let i = 0; i < table.rows.length; i++) 
+        if (table.rows[i].cells[col].getAttribute('selected') == 'true') 
+            selectedInColumn++;
+        
+    if (selectedInColumn >= maxSelection) 
+        return true;
+
+    return false;
+}
 
 createButton.addEventListener('click', createTable);
 
@@ -141,11 +167,10 @@ addColumnButton.addEventListener('click', () => {
 
 
 
-
 table.addEventListener('click', (event) => {
     let cell = event.target;
 
-    if (cell.tagName == 'TD' && !hasSelectedNeighbor(cell)) {
+    if (cell.tagName == 'TD' && !hasSelectedNeighbor(cell) && !isMaxSelectionReached(cell)) {
         let number = parseInt(cell.textContent);
         
         if (number == 0) {
@@ -163,3 +188,17 @@ table.addEventListener('click', (event) => {
         cell.setAttribute('selected', true);
     }
 });
+
+maxSelectionInput.addEventListener('change', () => {
+    if (table.rows.length != 0) {
+        for (let i = 0; i < table.rows.length; i++) {
+            for (let j = 0; j < table.rows[0].cells.length; j++) {
+                let cell = table.rows[i].cells[j];
+                cell.style.backgroundColor = '';
+                cell.style.color = '';
+                cell.removeAttribute('selected');
+            }
+        }
+    }
+    
+})
