@@ -3,7 +3,8 @@ let secondsLeft = localStorage.getItem('secondsLeft') || defaultSecondsLeft;
 let timer = document.querySelector('.countdown-timer');
 
 function updateTimer() {
-    timer.innerHTML = new Date(secondsLeft * 1000).toISOString().slice(11, 19);
+    if (timer)
+        timer.innerHTML = new Date(secondsLeft * 1000).toISOString().slice(11, 19);
 
     secondsLeft--;
     if (secondsLeft < 0)
