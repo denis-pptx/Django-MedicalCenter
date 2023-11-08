@@ -1,18 +1,23 @@
+const MAX_NUMBER = 1000;
+const MIN_SIDE = 1;
+const MAX_SIDE = 25;
+
 let table = document.getElementById('magic-table');
 
 const sizeInput = document.getElementById('size');
+sizeInput.min = MIN_SIDE;
+sizeInput.max = MAX_SIDE;
+
 const createButton = document.getElementById('create');
-
 const transposeButton = document.getElementById('transpose');
-
 const addRowButton = document.getElementById('addRow');
 const addColumnButton = document.getElementById('addColumn');
 
 
 function createTable() {
     let size = sizeInput.value;
-    if (size < 1 || size > 20) {
-        alert('Размер таблицы должен быть от 1 до 20.');
+    if (size < MIN_SIDE || size > MAX_SIDE) {
+        alert(`Размер таблицы должен быть от ${MIN_SIZE} до ${MAX_SIDE}.`);
         return;
     }
 
@@ -24,7 +29,7 @@ function createTable() {
         let row = table.insertRow(i);
         for (let j = 0; j < size; j++) {
             let cell = row.insertCell(j);
-            cell.textContent = Math.floor(Math.random() * 1000);
+            cell.textContent = Math.floor(Math.random() * MAX_NUMBER);
         }
     }
 }
@@ -57,11 +62,48 @@ function addRow() {
     let cols = table.rows[0].cells;
     for (let i = 0; i < cols.length; i++) {
         let cell = newRow.insertCell(i);
-        cell.textContent = Math.floor(Math.random() * 1000);
+        cell.textContent = Math.floor(Math.random() * MAX_NUMBER);
     }
     transposeButton.disabled = false;
 }
 
+function addColumn() {
+    let rows = table.rows;
+    for (let i = 0; i < rows.length; i++) {
+        let cell = rows[i].insertCell(rows[i].cells.length);
+        cell.textContent = Math.floor(Math.random() * MAX_NUMBER);
+    }
+}
+
+function makeTableOperation(func) {
+    if (table.rows.length == 0)
+        alert('Таблица пустая!');
+    else
+        func();
+}
+
 createButton.addEventListener('click', createTable);
-transposeButton.addEventListener('click', transposeTable);
-addRowButton.addEventListener('click', addRow);
+
+transposeButton.addEventListener('click', () => {
+    if (table.rows.length == 0)
+        alert('Таблица пустая!');
+    else
+        transposeTable();
+});
+
+addRowButton.addEventListener('click', () => {
+    if (table.rows.length == 0)
+        alert('Таблица пустая!');
+    else if (table.rows.length == MAX_SIDE)
+        alert(`Максимальное число строк: ${MAX_SIDE}`);
+    else
+        addRow();
+});
+addColumnButton.addEventListener('click', () => {
+    if (table.rows.length == 0)
+        alert('Таблица пустая!');
+    else if (table.rows[0].cells.length == MAX_SIDE)
+        alert(`Максимальное число колонок: ${MAX_SIDE}`);
+    else
+        addColumn();
+});
