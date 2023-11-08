@@ -38,7 +38,7 @@ function transposeTable() {
     let rows = table.rows;
     let cols = rows[0].cells;
 
-    if (rows.length == 0) 
+    if (rows.length == 0)
         return; // Таблица пустая
 
     // Создать новую таблицу для транспонирования
@@ -49,12 +49,16 @@ function transposeTable() {
         for (let j = 0; j < rows.length; j++) {
             let transposedCell = transposedRow.insertCell(j);
             transposedCell.textContent = rows[j].cells[i].textContent;
+
+            transposedCell.style.backgroundColor = rows[j].cells[i].style.backgroundColor;
+            transposedCell.style.color = rows[j].cells[i].style.color;
         }
     }
 
     // Заменить таблицу
     table.replaceWith(transposedTable)
     table = transposedTable;
+    updateTableOnClick();
 }
 
 function addRow() {
@@ -64,7 +68,6 @@ function addRow() {
         let cell = newRow.insertCell(i);
         cell.textContent = Math.floor(Math.random() * MAX_NUMBER);
     }
-    transposeButton.disabled = false;
 }
 
 function addColumn() {
@@ -75,11 +78,25 @@ function addColumn() {
     }
 }
 
-function makeTableOperation(func) {
-    if (table.rows.length == 0)
-        alert('Таблица пустая!');
-    else
-        func();
+function updateTableOnClick() {
+    table.addEventListener('click', (event) => {
+        let target = event.target;
+    
+        if (target.tagName === 'TD') {
+            let number = parseInt(target.textContent);
+    
+            if (number % 2 === 0) {
+                target.style.backgroundColor = 'gray';
+                target.style.color = 'white';
+            } else if (number === 0) {
+                target.style.backgroundColor = 'green';
+                target.style.color = 'white';
+            } else {
+                target.style.backgroundColor = 'red';
+                target.style.color = 'white';
+            }
+        }
+    });
 }
 
 createButton.addEventListener('click', createTable);
@@ -99,6 +116,7 @@ addRowButton.addEventListener('click', () => {
     else
         addRow();
 });
+
 addColumnButton.addEventListener('click', () => {
     if (table.rows.length == 0)
         alert('Таблица пустая!');
@@ -107,3 +125,5 @@ addColumnButton.addEventListener('click', () => {
     else
         addColumn();
 });
+
+updateTableOnClick();
