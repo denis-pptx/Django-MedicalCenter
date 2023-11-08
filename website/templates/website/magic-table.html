@@ -14,9 +14,17 @@
     <label for="size">Размер таблицы:</label>
     <input type="number" id="size" value="5">
     <button type="button" id="create">Создать</button>
+
+    <br>
     <button type="button" id="transpose">Транспонировать</button>
     <button type="button" id="addRow">Добавить ряд</button>
     <button type="button" id="addColumn">Добавить колонку</button>
+
+    <br>
+    <label for="maxSelection">Max selection in row:</label>
+    <input type="number" id="maxSelection" value="1" min="0" style="width: 50px;">
+
+
     <table id="magic-table"></table>
 {% endblock %}
 

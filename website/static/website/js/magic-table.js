@@ -37,7 +37,7 @@ function createTable() {
 function transposeTable() {
     let rows = table.rows;
     let cols = rows[0].cells;
-
+    
     if (rows.length == 0)
         return; // Таблица пустая
 
@@ -55,10 +55,13 @@ function transposeTable() {
         }
     }
 
-    // Заменить таблицу
-    table.replaceWith(transposedTable)
-    table = transposedTable;
-    updateTableOnClick();
+    // Удалить элементы исходной таблицы
+    while (table.firstChild)
+        table.firstChild.remove();
+
+    // Вставить детей транспонированной таблицы в эту
+    for (let child of transposedTable.children) 
+        table.appendChild(child);
 }
 
 function addRow() {
@@ -78,26 +81,6 @@ function addColumn() {
     }
 }
 
-function updateTableOnClick() {
-    table.addEventListener('click', (event) => {
-        let target = event.target;
-    
-        if (target.tagName === 'TD') {
-            let number = parseInt(target.textContent);
-    
-            if (number % 2 === 0) {
-                target.style.backgroundColor = 'gray';
-                target.style.color = 'white';
-            } else if (number === 0) {
-                target.style.backgroundColor = 'green';
-                target.style.color = 'white';
-            } else {
-                target.style.backgroundColor = 'red';
-                target.style.color = 'white';
-            }
-        }
-    });
-}
 
 createButton.addEventListener('click', createTable);
 
@@ -126,4 +109,22 @@ addColumnButton.addEventListener('click', () => {
         addColumn();
 });
 
-updateTableOnClick();
+table.addEventListener('click', (event) => {
+    let target = event.target;
+
+    if (target.tagName === 'TD') {
+        let number = parseInt(target.textContent);
+        
+        if (number === 0) {
+            target.style.backgroundColor = 'green';
+            target.style.color = 'white';
+        }
+        else if (number % 2 === 0) {
+            target.style.backgroundColor = 'gray';
+            target.style.color = 'white';
+        } else {
+            target.style.backgroundColor = 'red';
+            target.style.color = 'white';
+        }
+    }
+});
