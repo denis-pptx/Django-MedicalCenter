@@ -27,4 +27,15 @@
             <h1>Список новостей пуст</h1>
         {% endfor %}
     </article>
+
+    <div>
+        <label><input type="checkbox" id="styleControls">&nbsp;Элементы управления</label>
+
+        <div class="controls-container"></div>
+    </div>
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'news/js/controls.js' %}"></script>
 {% endblock %}
