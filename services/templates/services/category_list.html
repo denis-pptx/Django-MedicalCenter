@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'services/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'services/css/category-list.css' %}">
 {% endblock %}
 
 {% block title %}Направления{% endblock %}
@@ -30,4 +30,9 @@
         {% endfor %}
     </div>
     
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'services/js/category-list.js' %}"></script>
 {% endblock %}

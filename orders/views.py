@@ -42,7 +42,7 @@ def create_order(request):
         schedule = DoctorSchedule.objects.get(id=request.POST.get('schedule_id'))
 
         promo_code = PromoCode.objects.filter(code=request.POST.get('promo_code'), isAvailable=True).first()
-        print(promo_code)
+
         Order.objects.create(
             patient=request.user.patientprofile,
             service=service,
