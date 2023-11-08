@@ -52,6 +52,8 @@ function transposeTable() {
 
             transposedCell.style.backgroundColor = rows[j].cells[i].style.backgroundColor;
             transposedCell.style.color = rows[j].cells[i].style.color;
+            if (rows[j].cells[i].hasAttribute('selected'))
+                transposedCell.setAttribute('selected', true);
         }
     }
 
@@ -79,6 +81,34 @@ function addColumn() {
         let cell = rows[i].insertCell(rows[i].cells.length);
         cell.textContent = Math.floor(Math.random() * MAX_NUMBER);
     }
+}
+
+function hasSelectedNeighbor(cell) {
+    let row = cell.parentElement.rowIndex;
+    let col = cell.cellIndex;
+
+    const neighbors = [
+        { r: -1, c: 0 }, // Сверху
+        { r: 1, c: 0 },  // Снизу
+        { r: 0, c: -1 }, // Слева
+        { r: 0, c: 1 }   // Справа
+    ];
+
+    for (const neighbor of neighbors) {
+        const neighborRow = row + neighbor.r;
+        const neighborCol = col + neighbor.c;
+
+        if (neighborRow >= 0 && neighborRow < table.rows.length &&
+            neighborCol >= 0 && neighborCol < table.rows[0].cells.length) {
+
+            const neighborCell = table.rows[neighborRow].cells[neighborCol];
+            if (neighborCell.getAttribute('selected') == 'true')
+                return true;
+        }
+    }
+
+    // Нет покрашенных соседей
+    return false; 
 }
 
 
@@ -109,22 +139,27 @@ addColumnButton.addEventListener('click', () => {
         addColumn();
 });
 
-table.addEventListener('click', (event) => {
-    let target = event.target;
 
-    if (target.tagName === 'TD') {
-        let number = parseInt(target.textContent);
+
+
+table.addEventListener('click', (event) => {
+    let cell = event.target;
+
+    if (cell.tagName == 'TD' && !hasSelectedNeighbor(cell)) {
+        let number = parseInt(cell.textContent);
         
-        if (number === 0) {
-            target.style.backgroundColor = 'green';
-            target.style.color = 'white';
+        if (number == 0) {
+            cell.style.backgroundColor = 'green';
+            cell.style.color = 'white';
         }
-        else if (number % 2 === 0) {
-            target.style.backgroundColor = 'gray';
-            target.style.color = 'white';
+        else if (number % 2 == 0) {
+            cell.style.backgroundColor = 'gray';
+            cell.style.color = 'white';
         } else {
-            target.style.backgroundColor = 'red';
-            target.style.color = 'white';
+            cell.style.backgroundColor = 'red';
+            cell.style.color = 'white';
         }
+
+        cell.setAttribute('selected', true);
     }
 });
