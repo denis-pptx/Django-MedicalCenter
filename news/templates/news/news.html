@@ -28,11 +28,11 @@
         {% endfor %}
     </article>
 
-    <div>
-        <label><input type="checkbox" id="styleControls">&nbsp;Элементы управления</label>
-
-        <div class="controls-container"></div>
-    </div>
+    <form onsubmit="event.preventDefault()">
+        <input type="checkbox" id="controlsCheckBox">
+        <label for="controlsCheckBox">Элементы управления</label>
+        
+    </form>
     
 {% endblock %}
 

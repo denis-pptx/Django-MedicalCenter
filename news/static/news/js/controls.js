@@ -1,5 +1,4 @@
-const styleControlsCheckbox = document.getElementById('styleControls');
-const controlsContainer = document.querySelector('.controls-container');
+const styleControlsCheckbox = document.getElementById('controlsCheckBox');
 
 styleControlsCheckbox.addEventListener('change', function() {
     if (this.checked) {
@@ -10,9 +9,6 @@ styleControlsCheckbox.addEventListener('change', function() {
 });
 
 function addControls() {
-    if (!controlsContainer) {
-        return;
-    }
 
     // Создание элементов управления
     const fontSizeLabel = document.createElement('label');
@@ -32,8 +28,9 @@ function addControls() {
     const bgColorInput = document.createElement('input');
     bgColorInput.type = 'color';
 
-    // Добавить элементы управления в контейнер
-    controlsContainer.append(
+    // Добавить элементы управления
+    styleControlsCheckbox.nextElementSibling.after(
+        document.createElement('br'),
         document.createElement('br'),
         fontSizeLabel, 
         fontSizeLabel, 
@@ -49,6 +46,9 @@ function addControls() {
 
     // Добавить обработчики
     fontSizeInput.addEventListener('change', function() {
+        if (fontSizeInput.value < 5 || fontSizeInput.value > 30)
+            return;
+        
         document.body.style.fontSize = this.value + 'px';
     });
 
@@ -63,7 +63,8 @@ function addControls() {
 }
 
 function removeControls() {
-    while (controlsContainer.firstChild) {
-        controlsContainer.removeChild(controlsContainer.firstChild);
-    }
+    let label = styleControlsCheckbox.nextElementSibling;
+
+    while (label.nextElementSibling)
+        label.nextElementSibling.remove()
 }
