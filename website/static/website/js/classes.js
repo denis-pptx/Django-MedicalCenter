@@ -1,7 +1,7 @@
 function log_decorator(func) {
     function wrapper(...params) {
         console.log(`${new Date().toISOString()} | ${func.name}`);
-        return func(...params);
+        return func.apply(this, params);
     }
     
     return wrapper;
@@ -33,7 +33,7 @@ function Human(name, age) {
 }
 
 function Doctor(name, age, specialization) {
-    this.__proto__ = Object.create(new Human(name, age));
+    this.__proto__ = new Human(name, age);
 
     let _specialization = specialization;
 
@@ -54,6 +54,55 @@ function Doctor(name, age, specialization) {
     }
 }
 
+// class Human {
+//     constructor(name, age) {
+//         this._name = name;
+//         this._age = age;
+//     }
+
+//     name(name) {
+//         if (name == undefined)
+//             return this._name;
+//         else
+//             this._name = name;
+//     }
+
+//     age(age) {
+//         if (age == undefined)
+//             return this._age;
+//         else 
+//             this._age = age;
+//     }
+
+//     toString() {
+//         return `Human\n`+
+//         `name: ${this.name()}\n`+
+//         `age: ${this.age()}\n`;
+//     }
+// }
+
+
+// class Doctor extends Human {
+//     constructor(name, age, specialization) {
+//         super(name, age);
+//         this._specialization = specialization;
+//     }
+
+//     specialization(specialization) {
+//         if (specialization == undefined)
+//             return this._specialization;
+//         else
+//            this._specialization = specialization;
+//     }
+
+//     toString() {
+//         return `Doctor\n`+
+//                 `name: ${this.name()}\n`+
+//                 `age: ${this.age()}\n`+
+//                 `specialization: ${this.specialization()}`;
+//     }
+// }
+// Doctor.prototype.specialization = log_decorator(Doctor.prototype.specialization);
 
 const demo = document.getElementById('demo');
 
