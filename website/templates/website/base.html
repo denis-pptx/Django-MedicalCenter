@@ -54,6 +54,10 @@
             </div>
         </section>
         <section>
+            <div class="dropdown">
+                <button class="dropbtn" id="RGB">RGB</button>
+            </div>
+            
              {% if user.is_superuser %}
                 <a href="{% url 'admin:index' %}">Superuser</a>
                 <a href="{% url 'planned_visits' %}">Инфо</a>
@@ -74,6 +78,7 @@
                 <a href="{% url 'login' %}">Войти</a>
                 <a href="{% url 'register' %}">Регистрация</a>
             {% endif %}
+            
         </section>
     </nav>
 
@@ -99,6 +104,7 @@
     </div>
 
     <script src="{% static 'website/js/countdown.js' %}"></script>
+    <script src="{% static 'website/js/rgb.js' %}"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

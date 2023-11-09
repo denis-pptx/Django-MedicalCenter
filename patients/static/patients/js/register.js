@@ -7,7 +7,7 @@ let registerButton = document.getElementById('register');
 
 const daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
-dateInput.addEventListener('blur', function () {
+dateInput.addEventListener('change', function () {
     setTimeout(function () {
         let birthDate = new Date(dateInput.value);
         let currentDate = new Date();

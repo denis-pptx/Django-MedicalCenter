@@ -48,7 +48,7 @@ function addControls() {
     fontSizeInput.addEventListener('change', function() {
         if (fontSizeInput.value < 5 || fontSizeInput.value > 30)
             return;
-        
+
         document.body.style.fontSize = this.value + 'px';
     });
 
