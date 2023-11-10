@@ -22,6 +22,14 @@
             </div>
         {% endfor %}
     </div>
+
+    {% if user.is_superuser %}
+        <form id="rotationForm" onsubmit="event.preventDefault()">
+            <label>Ротация каждые: <input type="number" min="100" id="inputRotation"></label>
+            <button type="button" id="applyButton">Применить!</button>
+        </form>
+    {% endif %}
+
     
 
     <article class="introduction">  
@@ -74,6 +82,7 @@ def say_hello():
             <img class="partner-logo" src="{% static 'website/images/partners_logo/lode.png' %}" target="_blank">
         </a>
     </div>
+    
     
 {% endblock %}
 

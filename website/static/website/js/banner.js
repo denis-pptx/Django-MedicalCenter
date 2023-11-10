@@ -1,9 +1,23 @@
-let currentBanner = 0;
+var currentBanner = 0;
 let interval = document.querySelector('.banner-container').dataset.interval || 5000;
 let intervalId;
 
 let bannerContainer = document.querySelector('.banner-container');
 let banners = bannerContainer.querySelectorAll('.banner');
+
+let applyButton = document.getElementById('applyButton');
+
+let inputRotation = document.getElementById('inputRotation');
+inputRotation.value = interval;
+
+applyButton.addEventListener('click', () => {
+    
+    if (inputRotation.value) {
+        stopRotation();
+        interval = inputRotation.value;
+        startRotation();
+    }
+})
 
 rotateBanner();
 startRotation();

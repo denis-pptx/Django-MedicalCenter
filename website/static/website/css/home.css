@@ -90,3 +90,8 @@ article[class$="ntroduction"] div {
     font-family: inherit;
     display: inline-block;
 }
+
+
+#rotationForm {
+    margin-top: 40px;
+}
