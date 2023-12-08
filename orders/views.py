@@ -2,6 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 from .models import Service, Order
+from services.models import PromoCode
 from doctors.models import DoctorProfile, DoctorSchedule
 
 import logging
@@ -40,17 +41,22 @@ def create_order(request):
         service = Service.objects.get(id=request.POST.get('service_id'))
         schedule = DoctorSchedule.objects.get(id=request.POST.get('schedule_id'))
 
+        promo_code = PromoCode.objects.filter(code=request.POST.get('promo_code'), isAvailable=True).first()
+
         Order.objects.create(
             patient=request.user.patientprofile,
             service=service,
-            doctor_schedule=schedule
+            doctor_schedule=schedule,
+            promo_code=promo_code
         )
 
+        if promo_code:
+            service.price = round(service.price * (1 - promo_code.discount / 100), 2)
+            
         context = {
             'service': service,
             'schedule': schedule
         }
 
-        logging.info('Order is created')
         return render(request, 'orders/order_success.html', context=context)
 

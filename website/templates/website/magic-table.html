@@ -1,0 +1,34 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}JS | Таблица{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'website/css/magic-table.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Таблица</h1>
+    <hr>
+
+    <label for="size">Размер таблицы:</label>
+    <input type="number" id="size" value="5">
+    <button type="button" id="create">Создать</button>
+
+    <br>
+    <button type="button" id="transpose">Транспонировать</button>
+    <button type="button" id="addRow">Добавить ряд</button>
+    <button type="button" id="addColumn">Добавить колонку</button>
+
+    <br>
+    <label for="maxSelection">Max selection in row / column:</label>
+    <input type="number" id="maxSelection" value="1" min="0" style="width: 50px;">
+
+
+    <table id="magic-table"></table>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'website/js/magic-table.js' %}"></script>
+{% endblock %}

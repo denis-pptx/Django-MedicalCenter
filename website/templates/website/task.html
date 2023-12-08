@@ -1,0 +1,90 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Ассоциативный массив{% endblock %}
+
+{% block styles %}
+    <style>
+        body {
+            background-color: aliceblue;
+            background-image: none;
+        }
+
+        table {
+            align-items: center;
+        }
+
+        td {
+            padding: 3px;
+        }
+        
+        button {
+            width: 100%;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Расчет кубиков</h1>
+
+    <form>
+        <table>
+            <tr>
+                <td>Цвет кубика:</td>
+                <td><input type="text" id="color"></td>
+            </tr>
+            <tr>
+                <td>Размер кубика (см³):</td>
+                <td><input type="number" id="size" min="0.0001"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="button" id="add">Добавить кубик</button></td>
+            </tr>
+        </table>
+    </form>
+
+    <div id="results"></div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        
+        const addButton = document.getElementById('add');
+        const inputColor = document.getElementById('color');
+        const inputSize = document.getElementById('size');
+        const results = document.getElementById("results");
+
+        const cubes = {};
+
+        addButton.addEventListener('click', () => {
+            if (inputColor.value && inputSize.value) {
+                let color = inputColor.value;
+                let size = +inputSize.value;
+                
+                if (size <= 0) {
+                    alert('Некорректный объем!');
+                    return;
+                }
+
+                if (color in cubes) {
+                    cubes[color].count += 1;
+                    cubes[color].volume += size;
+                } else {
+                    cubes[color] = { 
+                        count: 1, 
+                        volume: size 
+                    };
+                }
+
+                results.innerHTML = "Результаты: <br>";
+                for (color in cubes) {
+                    results.innerHTML += `Цвет: ${color}. Количество: ${cubes[color].count}. Объем: ${cubes[color].volume} см³. <br>`;
+                }
+
+            } else {
+                alert('Одно из полей ввода пусто!');
+            } 
+        })
+    </script>
+{% endblock %}

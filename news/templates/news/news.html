@@ -27,4 +27,15 @@
             <h1>Список новостей пуст</h1>
         {% endfor %}
     </article>
+
+    <form onsubmit="event.preventDefault()">
+        <input type="checkbox" id="controlsCheckBox">
+        <label for="controlsCheckBox">Элементы управления</label>
+        
+    </form>
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'news/js/controls.js' %}"></script>
 {% endblock %}

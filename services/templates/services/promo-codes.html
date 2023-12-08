@@ -1,0 +1,34 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}КДС | Акции{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'services/css/promo-codes.css' %}">
+{% endblock %}
+
+{% block content %}
+    <article class="promo-codes">
+        <h1>Промокоды</h1>
+        <hr>
+        <section class="available common-block">
+            <h3>Действующие</h3>
+            <ul type="circle">
+                {% for promo_code in available_promo_codes %}
+                    <li><mark><strong>{{ promo_code.code }}</strong></mark> — {{ promo_code.service.name }} (Скидка: {{ promo_code.discount }}%) <a href="{% url 'category_detail' slug=promo_code.service.subcategory.category.slug %}">Ссылка</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+        <section class="archive common-block">
+            <details>
+                <summary>Архив</summary>
+                <ul type="square">
+                    {% for promo_code in unavailable_promo_codes %}
+                    <li><mark><strong>{{ promo_code.code }}</strong></mark> — {{ promo_code.service.name }} (Скидка: {{ promo_code.discount }}%)</li>
+                    {% endfor %}
+                </ul>
+            </details>
+        </section>
+    </article>
+{% endblock %}

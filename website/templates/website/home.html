@@ -8,13 +8,31 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Главная <span class="name">КДС</span></h1>
-    <hr>
+    <div class="countdown-container">
+        <div class="countdown-text">Black Friday. Left:</div>
+        <div class="countdown-timer">01:20:46</div>
+    </div>
 
-    <article class="introduction">
-        <a href="https://www.kdsmedical.by">
-            <img class="banner" src="{% static 'website/images/banner/banner.png' %}" alt="banner">
-        </a>
+    <div class="banner-container" data-interval="{{ interval }}">
+        {% for banner in banners %}
+            <div class="banner" {% if not forloop.first %}hidden{% endif %}>
+                <a href="{{ banner.link }}" target="_blank">
+                    <img class="banner-image" src="{{ banner.image.url }}" alt="{{ banner.title }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if user.is_superuser %}
+        <form id="rotationForm" onsubmit="event.preventDefault()">
+            <label>Ротация каждые: <input type="number" min="100" id="inputRotation"></label>
+            <button type="button" id="applyButton">Применить!</button>
+        </form>
+    {% endif %}
+
+    
+
+    <article class="introduction">  
         <pre>
             <code>
 def say_hello():
@@ -64,4 +82,11 @@ def say_hello():
             <img class="partner-logo" src="{% static 'website/images/partners_logo/lode.png' %}" target="_blank">
         </a>
     </div>
+    
+    
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'website/js/banner.js' %}"></script>
 {% endblock %}

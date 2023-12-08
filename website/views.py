@@ -2,7 +2,7 @@ from django.shortcuts import render
 import requests
 from news.models import News
 from patients.models import Feedback
-
+from .models import Banner, RotationInterval
 import logging
 logger = logging.getLogger(__name__)
 
@@ -14,9 +14,18 @@ def feedback_list(request):
 
 
 def home(request):
-    logger.info("The main page is opened")
+    banners = Banner.objects.all()
+    rotation_interval = RotationInterval.objects.first()
+
+    if not rotation_interval:
+        rotation_interval = RotationInterval.objects.create(interval=5000)
+    
     last_news = News.objects.all().order_by('-publish_date').first()
-    return render(request, 'website/home.html', context={'last_news': last_news})
+    return render(request, 'website/home.html', context={
+        'last_news': last_news,
+        'banners': banners,
+        'interval': rotation_interval.interval
+        })
 
 
 def get_weather(request):

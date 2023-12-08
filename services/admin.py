@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, SubCategory, Category
+from .models import Service, SubCategory, Category, PromoCode
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.core.files.storage import default_storage
@@ -56,3 +56,8 @@ class ServiceAdmin(admin.ModelAdmin):
         return obj.subcategory.category
 
     get_category.short_description = 'Category'
+
+
+@admin.register(PromoCode)
+class PromoCodeAdmin(admin.ModelAdmin):
+    list_display = ('code','service','discount', 'isAvailable')

@@ -34,7 +34,7 @@
                     <a href="{% url 'doctors_list' %}">Врачи</a>
                     <a href="{% url 'category_list' %}">Направления</a>
                     <a href="{% url 'feedback-list' %}">Отзывы</a>
-                    <a href="{% url 'promo-codes' %}">Акции</a>
+                    <a href="{% url 'promo-codes' %}">Промокоды</a>
                     <a href="{% url 'vacancies' %}">Вакансии</a>
                 </div>
             </div>
@@ -45,8 +45,20 @@
                     <a href="{% url 'gender' %}">Пол</a>
                 </div>
             </div>
+            <div class="dropdown">
+                <button class="dropbtn">JS</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'magic-table' %}">Таблица [9]</a>
+                    <a href="{% url 'classes' %}">Классы [10]</a>
+                    <a href="{% url 'task' %}">Ассоциативный массив [11]</a>
+                </div>
+            </div>
         </section>
         <section>
+            <!-- <div class="dropdown">
+                <button class="dropbtn" id="RGB">RGB</button>
+            </div> -->
+            
              {% if user.is_superuser %}
                 <a href="{% url 'admin:index' %}">Superuser</a>
                 <a href="{% url 'planned_visits' %}">Инфо</a>
@@ -67,6 +79,7 @@
                 <a href="{% url 'login' %}">Войти</a>
                 <a href="{% url 'register' %}">Регистрация</a>
             {% endif %}
+            
         </section>
     </nav>
 
@@ -76,7 +89,7 @@
         </main>
 
         <footer>
-            <section class="time">
+            <!-- <section class="time">
                 {% current_times as times %}
                 Local Time: {{ times.local_time}}<br>
                 UTC Time: {{ times.utc_time }}<br>
@@ -87,8 +100,11 @@
                 {% for date in range %}
                     <span>{{ date|date:"d.m.Y" }} {{ date|date:"l" }}</span><br>
                 {% endfor %}
-            </section>
+            </section> -->
         </footer>
     </div>
+
+    <script src="{% static 'website/js/countdown.js' %}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
